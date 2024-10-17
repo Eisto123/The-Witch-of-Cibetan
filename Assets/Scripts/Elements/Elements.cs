@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Elements : MonoBehaviour
 {
     public ElementType type;
 
+    public UnityEvent<ElementType> PickUpEvent;
     public Material waterMaterial;
     public Material fireMaterial;
 
@@ -27,8 +29,9 @@ public class Elements : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        PickUpEvent.Invoke(type);
+        Debug.Log("pickup"+type);
         //Add card, distroy this
-        Debug.Log("hit");
         Destroy(this.gameObject);
     }
 }
