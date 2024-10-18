@@ -30,7 +30,6 @@ public class Elements : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         PickUpEvent.Invoke(type);
-        Debug.Log("pickup"+type);
         //Add card, distroy this
         Destroy(this.gameObject);
     }

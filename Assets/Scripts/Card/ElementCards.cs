@@ -9,13 +9,11 @@ public class ElementCards : Cards
     public Text text;
     public Image image;
 
-
+    //Iniciate different element on the card
     public void Inicialize(ElementCardSO cardSO){
         
         elementType = cardSO.elementType;
         text.text = cardSO.elementName;
-        Debug.Log(elementType);
-        Debug.Log(text.text);
 
 
 

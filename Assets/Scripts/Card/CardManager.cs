@@ -21,18 +21,19 @@ public class CardManager : MonoBehaviour
         pickUpEvent.OnEventRise -= OnPickUpEvent;
     }
 
+    [ContextMenu("TestGenerateCard")]
+    public void GenerateCard(){
+        cardDeck.GetComponent<CardDeck>().AddCard(elementCard);
+    }
     public void OnPickUpEvent(ElementType elementType){
-
-        Debug.Log(elementType);
         switch(elementType){
             case ElementType.Water:
                 elementCard.GetComponent<ElementCards>().Inicialize(water);
-                Instantiate(elementCard,cardDeck.transform);
-                
+                cardDeck.GetComponent<CardDeck>().AddCard(elementCard);
                 return;
             case ElementType.Fire:
                 elementCard.GetComponent<ElementCards>().Inicialize(fire);
-                Instantiate(elementCard,cardDeck.transform);
+                cardDeck.GetComponent<CardDeck>().AddCard(elementCard);
                 return;
 
 
