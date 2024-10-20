@@ -9,6 +9,7 @@ public class CardDeck : MonoBehaviour
     public int cardWidth = 250;
     [SerializeField] private int maxCard = 7;
     public List<GameObject> cards;
+    public List<GameObject> Slots;
 
     private void Start()
     {
@@ -17,32 +18,37 @@ public class CardDeck : MonoBehaviour
     private void GenerateSlot(){
         for(int i = 0; i<cards.Count;i++){
             if(transform.childCount<=i){
-                Instantiate(slotPrefab,transform);
+                Slots.Add(Instantiate(slotPrefab,transform));
             }
         }
         
         float totalWidth = cards.Count*cardWidth;
-        int j = 0;
-        foreach(Transform slot in transform){
-            if(j<transform.childCount){
-                float xPos = 0 - totalWidth/2 + (j*cardWidth) + cardWidth/2;
-                rect = slot.GetComponent<RectTransform>();
+        
+        for(int index = 0; index<Slots.Count; index++){
+            float xPos = 0 - totalWidth/2 + (index*cardWidth) + cardWidth/2;
+                rect = Slots[index].GetComponent<RectTransform>();
                 rect.anchoredPosition = new Vector3(xPos,0,0);
-                cards[j].transform.SetParent(slot.transform);
-                cards[j].GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
-                j++;
-            }
-
+                cards[index].transform.SetParent(Slots[index].transform);
+                cards[index].GetComponent<ElementCards>().currentSlot = index;
+                if(!cards[index].GetComponent<ElementCards>().isSelected){
+                    cards[index].GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+                }
         }
-        
-        
-        // for(int i = 0; i<cards.Count;i++){
-        //     float xPos = 0 - totalWidth/2 + (i*cardWidth) + cardWidth/2;
-        //     GameObject Slot = Instantiate(slotPrefab,transform);
-        //     rect = Slot.GetComponent<RectTransform>();
-        //     rect.anchoredPosition = new Vector3(xPos,0,0);
-        //     cards[i].transform.SetParent(Slot.transform);
-        //     cards[i].GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+
+        // int j = 0;
+        // foreach(Transform slot in transform){
+        //     if(j<transform.childCount){
+        //         float xPos = 0 - totalWidth/2 + (j*cardWidth) + cardWidth/2;
+        //         rect = slot.GetComponent<RectTransform>();
+        //         rect.anchoredPosition = new Vector3(xPos,0,0);
+        //         cards[j].transform.SetParent(slot.transform);
+        //         cards[j].GetComponent<ElementCards>().currentSlot = j;
+        //         if(!cards[j].GetComponent<ElementCards>().isSelected){
+        //             cards[j].GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+        //         }
+        //         j++;
+        //     }
+
         // }
     }
 
@@ -50,22 +56,13 @@ public class CardDeck : MonoBehaviour
         if(cards.Count < maxCard)
         cards.Add(Instantiate(card));
         GenerateSlot();
-        //InsertCards();
     }
 
-    private void InsertCards(){
-        int index = 0;
-        if (cards != null){
-            foreach (Transform child in transform)
-            {
-                if(index<cards.Count){
-                Instantiate(cards[index],child.transform);
-                index++;
-                break;
-                }
-                
-            }
-        }
+    public void RemoveCard(int slotIndex){
+        Destroy(Slots[slotIndex]);
+        Slots.RemoveAt(slotIndex);
+        cards.RemoveAt(slotIndex);
+        GenerateSlot();
     }
 
 }

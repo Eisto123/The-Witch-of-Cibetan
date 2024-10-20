@@ -1,6 +1,6 @@
 public enum ElementType{
     Water,Fire,Wood,Earth
 }
-public enum CardType{
-    Element,Spell
+public enum SpellName{
+    Wave,Storm,Fireball
 }
