@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -10,7 +8,6 @@ public class ElementCards : Cards
     public Text text;
     public Image image;
     public Vector2 clickOffset;
-    public int currentSlot;
 
     public bool isSelected = false;
 

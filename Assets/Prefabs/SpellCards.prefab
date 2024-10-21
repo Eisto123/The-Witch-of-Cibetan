@@ -91,9 +91,9 @@ GameObject:
   - component: {fileID: 6770769572690257109}
   - component: {fileID: 9054260974563304476}
   - component: {fileID: 7872548824583288643}
-  - component: {fileID: -201238185497796968}
+  - component: {fileID: 4183390258903014814}
   m_Layer: 5
-  m_Name: ElementCards
+  m_Name: SpellCards
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -198,7 +198,7 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 9054260974563304476}
---- !u!114 &-201238185497796968
+--- !u!114 &4183390258903014814
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -207,7 +207,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5094092719692145188}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 795c0ec9c52a2f442be269206798452d, type: 3}
+  m_Script: {fileID: 11500000, guid: 798d1933a75a2714ab8be46609011c6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isSpell: 0
@@ -220,23 +220,10 @@ MonoBehaviour:
       m_Calls: []
   BeginClickEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 15af67cdba3aad740afbd4351db56453, type: 2}
-        m_TargetAssemblyTypeName: SelectEventSO, Assembly-CSharp
-        m_MethodName: RiseEvent
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: -201238185497796968}
-          m_ObjectArgumentAssemblyTypeName: ElementCards, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   rect: {fileID: 0}
-  elementType: 0
+  spellName: 0
   text: {fileID: 3481479655566341213}
   image: {fileID: 0}
-  clickOffset: {x: 0, y: 20}
+  dragAmount: 200
   currentSlot: 0
-  isSelected: 0

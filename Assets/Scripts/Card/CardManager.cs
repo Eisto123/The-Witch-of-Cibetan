@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,9 +8,15 @@ public class CardManager : MonoBehaviour
 {
     public ElementCardSO water;
     public ElementCardSO fire;
+
+    [Header("CardPrefab")]
     public GameObject elementCard;
+    public GameObject spellCard;
+
     public GameObject cardDeck;
 
+
+    public List<SpellCardSO> spellCards;
     public PickUpEventSO pickUpEvent;
     
     private void OnEnable()
@@ -25,6 +32,7 @@ public class CardManager : MonoBehaviour
     public void GenerateCard(){
         cardDeck.GetComponent<CardDeck>().AddCard(elementCard);
     }
+
     public void OnPickUpEvent(ElementType elementType){
         switch(elementType){
             case ElementType.Water:
@@ -35,8 +43,18 @@ public class CardManager : MonoBehaviour
                 elementCard.GetComponent<ElementCards>().Inicialize(fire);
                 cardDeck.GetComponent<CardDeck>().AddCard(elementCard);
                 return;
+        }
+    }
 
-
+    public void AddSpellCard(SpellName spellName){
+        
+        if(spellCards != null){
+            foreach(SpellCardSO item in spellCards){
+                if(item.spellName == spellName){
+                    spellCard.GetComponent<SpellCards>().Inicialize(item);
+                    cardDeck.GetComponent<CardDeck>().AddCard(spellCard);
+                }
+            }
         }
     }
 

@@ -5,8 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="SpellCardSO",menuName ="Card/SpellCardSO")]
 public class SpellCardSO : ScriptableObject
 {
-    public string SpellName;
+    public SpellName spellName;
     public Sprite image;
-
+    public float damage;
 
 }

@@ -17,7 +17,9 @@ public class CardDeck : MonoBehaviour
     }
     private void GenerateSlot(){
         for(int i = 0; i<cards.Count;i++){
-            if(transform.childCount<=i){
+            Debug.Log("called");
+            if(Slots.Count<=i){
+                Debug.Log("insta slot");
                 Slots.Add(Instantiate(slotPrefab,transform));
             }
         }
@@ -29,10 +31,16 @@ public class CardDeck : MonoBehaviour
                 rect = Slots[index].GetComponent<RectTransform>();
                 rect.anchoredPosition = new Vector3(xPos,0,0);
                 cards[index].transform.SetParent(Slots[index].transform);
-                cards[index].GetComponent<ElementCards>().currentSlot = index;
-                if(!cards[index].GetComponent<ElementCards>().isSelected){
+                cards[index].GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+                cards[index].GetComponent<Cards>().currentSlot = index;
+                if(cards[index].TryGetComponent<SpellCards>(out SpellCards spellCards)){
+                }
+                else{
+                    if(!cards[index].GetComponent<ElementCards>().isSelected){
                     cards[index].GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
                 }
+                }
+                
         }
 
         // int j = 0;

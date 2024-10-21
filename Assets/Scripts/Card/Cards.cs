@@ -16,6 +16,7 @@ IPointerEnterHandler, IPointerExitHandler,IPointerUpHandler,IPointerDownHandler
     public UnityEvent<Cards> EndDragEvent;
     public UnityEvent<Cards> BeginClickEvent;
     public RectTransform rect;
+    public int currentSlot;
 
     private void Awake()
     {
@@ -36,12 +37,6 @@ IPointerEnterHandler, IPointerExitHandler,IPointerUpHandler,IPointerDownHandler
 
     public virtual void OnDrag(PointerEventData eventData)
     {
-        if(GetComponent<RectTransform>().anchoredPosition.y > 150){
-            Debug.Log("cast spell!");
-
-        }
-        //only spell card can drag
-        transform.position = eventData.position;
     }
 
     public virtual void OnEndDrag(PointerEventData eventData)

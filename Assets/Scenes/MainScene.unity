@@ -155,7 +155,12 @@ MonoBehaviour:
   water: {fileID: 11400000, guid: f0f34aeeb337c8a448c56e3fa9e96455, type: 2}
   fire: {fileID: 11400000, guid: b12346bbc77045d40b937cbe34a6d502, type: 2}
   elementCard: {fileID: 5094092719692145188, guid: 32494ad8329ba454c8eb5c63adad747e, type: 3}
+  spellCard: {fileID: 5094092719692145188, guid: 858c8565667d4f540806eb594b7a762d, type: 3}
   cardDeck: {fileID: 368258732}
+  spellCards:
+  - {fileID: 11400000, guid: 721837aa33889cc4190e566b71f06857, type: 2}
+  - {fileID: 11400000, guid: 9ce09136cd42ad2459b09010114cab6d, type: 2}
+  - {fileID: 11400000, guid: d03f68e577f802c4fb2030231c137b29, type: 2}
   pickUpEvent: {fileID: 11400000, guid: 0022f71c465c12b47ab6ffcbf6e13120, type: 2}
 --- !u!4 &266945110
 Transform:
@@ -422,6 +427,21 @@ MonoBehaviour:
   synthesisMethodSO: {fileID: 11400000, guid: 0c2a75aace1cb9e409944fde418aff77, type: 2}
   cardDeck: {fileID: 368258734}
   spellName: 0
+  SynthesisCompleteEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 266945109}
+        m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+        m_MethodName: AddSpellCard
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &555792742
 Transform:
   m_ObjectHideFlags: 0

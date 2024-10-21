@@ -4,3 +4,7 @@ public enum ElementType{
 public enum SpellName{
     Wave,Storm,Fireball
 }
+
+public enum CastMethod{
+    
+}

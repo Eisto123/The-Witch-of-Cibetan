@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 public class SynthesisManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class SynthesisManager : MonoBehaviour
     public SynthesisMethodSO synthesisMethodSO;
     public CardDeck cardDeck;
     public SpellName spellName;
+
+    public UnityEvent<SpellName> SynthesisCompleteEvent;
 
     private void OnEnable()
     {
@@ -31,7 +34,7 @@ public class SynthesisManager : MonoBehaviour
             
             cardDeck.RemoveCard(cards[0].currentSlot);
             cardDeck.RemoveCard(cards[1].currentSlot);
-
+            SynthesisCompleteEvent.Invoke(spellName);
             Debug.Log(spellName);
             cards.Clear();
         }
