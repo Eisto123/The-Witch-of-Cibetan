@@ -12,8 +12,8 @@ IPointerEnterHandler, IPointerExitHandler,IPointerUpHandler,IPointerDownHandler
 {
     public bool isSpell;
     public bool isDragging;
-    public UnityEvent<Cards> BeginDragEvent;
-    public UnityEvent<Cards> EndDragEvent;
+    //public UnityEvent<Cards> BeginDragEvent;
+    //public UnityEvent<Cards> EndDragEvent;
     public UnityEvent<Cards> BeginClickEvent;
     public RectTransform rect;
     public int currentSlot;
@@ -30,7 +30,7 @@ IPointerEnterHandler, IPointerExitHandler,IPointerUpHandler,IPointerDownHandler
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
-        BeginDragEvent.Invoke(this);
+        //BeginDragEvent.Invoke(this);
 
         isDragging = true;
     }
@@ -43,7 +43,7 @@ IPointerEnterHandler, IPointerExitHandler,IPointerUpHandler,IPointerDownHandler
     {
         GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
 
-        EndDragEvent.Invoke(this);
+        //EndDragEvent.Invoke(this);
         isDragging = false;
     }
 

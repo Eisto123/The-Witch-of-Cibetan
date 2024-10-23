@@ -9,6 +9,7 @@ public class ElementCards : Cards
     public Image image;
     public Vector2 clickOffset;
 
+    private bool startSelecting = false;
     public bool isSelected = false;
 
     //Iniciate different element on the card
@@ -22,12 +23,17 @@ public class ElementCards : Cards
     public override void OnPointerDown(PointerEventData eventData)
     {
         base.OnPointerDown(eventData);
-        if(!isSelected){
+        startSelecting = true;
+    }
+    public override void OnPointerUp(PointerEventData eventData)
+    {
+        base.OnPointerDown(eventData);
+        if(!isSelected&&startSelecting&&!isDragging){
         rect.anchoredPosition += clickOffset;
         BeginClickEvent.Invoke(this);
         isSelected = true;
+        startSelecting = false;
         }
-        
 
     }
 

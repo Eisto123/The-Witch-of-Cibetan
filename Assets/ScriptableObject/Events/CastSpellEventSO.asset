@@ -9,10 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec6438f040918954295bf494edd38527, type: 3}
-  m_Name: Fireball
+  m_Script: {fileID: 11500000, guid: 8c118141f7a11a64889ba777c1bd9a7b, type: 3}
+  m_Name: CastSpellEventSO
   m_EditorClassIdentifier: 
-  spellName: 2
-  image: {fileID: 0}
-  damage: 0
-  castMethod: 1

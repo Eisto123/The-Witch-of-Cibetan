@@ -8,5 +8,6 @@ public class SpellCardSO : ScriptableObject
     public SpellName spellName;
     public Sprite image;
     public float damage;
+    public CastMethod castMethod;
 
 }

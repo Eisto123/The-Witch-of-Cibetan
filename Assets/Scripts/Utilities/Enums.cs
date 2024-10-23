@@ -6,5 +6,5 @@ public enum SpellName{
 }
 
 public enum CastMethod{
-    
+    SkillShot, Range, Cone, Self
 }

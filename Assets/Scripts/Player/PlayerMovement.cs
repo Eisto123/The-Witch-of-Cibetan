@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Movement")]
     public Vector2 inputValue;
+    
     private Vector3 playerMovement;
     public float speed;
     [SerializeField] private float smoothTime = 0.02f;
