@@ -29,8 +29,10 @@ public class Elements : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        PickUpEvent.Invoke(type);
-        //Add card, distroy this
-        Destroy(this.gameObject);
+        if(other.gameObject.tag=="Player"){
+            PickUpEvent.Invoke(type);
+            Destroy(this.gameObject);
+        }
+        
     }
 }

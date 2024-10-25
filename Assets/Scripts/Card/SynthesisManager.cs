@@ -35,7 +35,6 @@ public class SynthesisManager : MonoBehaviour
             cardDeck.RemoveCard(cards[0].currentSlot);
             cardDeck.RemoveCard(cards[1].currentSlot);
             SynthesisCompleteEvent.Invoke(spellName);
-            Debug.Log(spellName);
             cards.Clear();
         }
     }

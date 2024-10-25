@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Scripting.APIUpdating;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,16 +13,19 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Movement")]
     public Vector2 inputValue;
-    
     private Vector3 playerMovement;
     public float speed;
+    private float gravityValue = -9.81f;
     [SerializeField] private float smoothTime = 0.02f;
     private float currentVelocity = 0.0f;
+    public float MoveRadius = 10f;
+    private Vector3 initialPos;
 
     private void Awake()
     {
         playerControl =new PlayerControl();
         controller = GetComponent<CharacterController>();
+        initialPos = transform.position;
     }
 
     private void OnEnable()
@@ -35,7 +40,10 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         inputValue = playerControl.Gameplay.Move.ReadValue<Vector2>();
-        
+
+        if((transform.position-initialPos).magnitude>MoveRadius){
+            transform.position -= Vector3.down*gravityValue*Time.deltaTime;
+        }
     }
 
     private void FixedUpdate()
@@ -47,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
     {
         
         if (inputValue != Vector2.zero){
-            playerMovement = new Vector3(inputValue.x,0f,inputValue.y);
+            playerMovement = new Vector3(inputValue.x,playerMovement.y,inputValue.y);
         }
         else
         {

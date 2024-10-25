@@ -14,7 +14,8 @@ public class SpellCards : Cards
     public int dragAmount = 200;
 
     public void Inicialize(SpellCardSO spellSO){
-        
+        image.sprite = spellSO.image;
+        image.color = Color.cyan;
         spellName = spellSO.spellName;
         text.text = spellSO.spellName.ToString();
         castMethod = spellSO.castMethod;

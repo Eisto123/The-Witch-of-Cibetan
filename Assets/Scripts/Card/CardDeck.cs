@@ -17,9 +17,9 @@ public class CardDeck : MonoBehaviour
     }
     private void GenerateSlot(){
         for(int i = 0; i<cards.Count;i++){
-            Debug.Log("called");
+            
             if(Slots.Count<=i){
-                Debug.Log("insta slot");
+
                 Slots.Add(Instantiate(slotPrefab,transform));
             }
         }

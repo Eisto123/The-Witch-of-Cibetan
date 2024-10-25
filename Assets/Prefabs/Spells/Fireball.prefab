@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 6628127317827806603}
   - component: {fileID: 8859526396658424732}
   - component: {fileID: 7083712991420500624}
-  - component: {fileID: 2306273036029075964}
   - component: {fileID: 8860628851698542586}
+  - component: {fileID: -1320328958386523476}
   m_Layer: 0
-  m_Name: Wave
+  m_Name: Fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,9 +29,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 967102036488952128}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0000000012579209, y: 0.6717101, z: 0.000000001387333, w: 0.74081415}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 3, y: 1, z: 0.2}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 967102036488952128}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &8859526396658424732
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3803649a2a05f254fa199b26012214a4, type: 2}
+  - {fileID: 2100000, guid: 56193c178f9d92c448574c0c6b6d20c4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,21 +107,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2306273036029075964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 967102036488952128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5226de4929c97ff408eae893265c9b56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waveSpeed: 5
-  spellDistance: 8
-  rb: {fileID: 8860628851698542586}
 --- !u!54 &8860628851698542586
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -147,5 +132,24 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!114 &-1320328958386523476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967102036488952128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 052396697884ca24dacee439bda16c5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireSpeed: 15
+  spellDistance: 8
+  Force: 645
+  Radius: 0.25
+  detectRadius: 5
+  lift: 30
+  explode: 0
