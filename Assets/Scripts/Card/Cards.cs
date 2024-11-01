@@ -12,11 +12,13 @@ IPointerEnterHandler, IPointerExitHandler,IPointerUpHandler,IPointerDownHandler
 {
     public bool isSpell;
     public bool isDragging;
+    public bool isSellecting;
     //public UnityEvent<Cards> BeginDragEvent;
     //public UnityEvent<Cards> EndDragEvent;
     public UnityEvent<Cards> BeginClickEvent;
     public RectTransform rect;
     public int currentSlot;
+    public Vector2 hoverOffset;
 
     private void Awake()
     {
@@ -51,21 +53,23 @@ IPointerEnterHandler, IPointerExitHandler,IPointerUpHandler,IPointerDownHandler
     public virtual void OnPointerDown(PointerEventData eventData)
     {
         
+        
     }
 
     public virtual void OnPointerUp(PointerEventData eventData)
     {
-
     }
 
     //Hover: play some animation
-    public void OnPointerEnter(PointerEventData eventData)
+    public virtual void OnPointerEnter(PointerEventData eventData)
     {
+        
 
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public virtual void OnPointerExit(PointerEventData eventData)
     {
-
+        
+        
     }
 }

@@ -34,7 +34,21 @@ public class ElementCards : Cards
         isSelected = true;
         startSelecting = false;
         }
-
+    }
+    public override void OnPointerEnter(PointerEventData eventData)
+    {
+        base.OnPointerEnter(eventData);
+        if(!isSelected){
+            rect.anchoredPosition += hoverOffset;
+        }
+    }
+    public override void OnPointerExit(PointerEventData eventData)
+    {
+        base.OnPointerExit(eventData);
+        if(!isSelected){
+            rect.anchoredPosition = Vector3.zero;
+            Debug.Log("called");
+        }
     }
 
 }

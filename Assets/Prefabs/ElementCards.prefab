@@ -229,6 +229,7 @@ MonoBehaviour:
         m_CallState: 2
   rect: {fileID: 0}
   currentSlot: 0
+  hoverOffset: {x: 0, y: 10}
   elementType: 0
   text: {fileID: 3481479655566341213}
   image: {fileID: 0}

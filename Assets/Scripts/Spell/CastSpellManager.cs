@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class CastSpellManager : MonoBehaviour
 {
     private GameObject Player;
     public CastMethod castMethod;
+
+    public UnityEvent OnCastEnd;
 
     [Header("SpellCanvas")]
     public Canvas skillShotCanvas;
@@ -80,8 +83,10 @@ public class CastSpellManager : MonoBehaviour
                 else if(currentCard.spellName == SpellName.Fireball){
                     Instantiate(fireballPrefab,Player.transform.position,ssCanvas);
                 }
+                OnCastEnd.Invoke();
                 cardDeck.RemoveCard(currentCard.currentSlot);
                 skillShotCanvas.enabled = false;
+                
                 
                 
             }
@@ -103,13 +108,15 @@ public class CastSpellManager : MonoBehaviour
             if(Input.GetMouseButtonUp(0)){
                 if(currentCard.spellName == SpellName.Storm){
                     Instantiate(stormPrefab,rangeCanvas.transform.position,Quaternion.identity);
-                    }
+                }
+                OnCastEnd.Invoke();
                 cardDeck.RemoveCard(currentCard.currentSlot);
                 rangeCanvas.enabled = false;
                 rangeIndicator.enabled = false;
             }
         }
     }
+
     public void OnCastSpell(SpellCards spellcard){
         switch(spellcard.castMethod){
                 case CastMethod.SkillShot:

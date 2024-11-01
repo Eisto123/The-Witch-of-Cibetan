@@ -217,6 +217,7 @@ MonoBehaviour:
       m_Calls: []
   rect: {fileID: 0}
   currentSlot: 0
+  hoverOffset: {x: 0, y: 10}
   spellName: 0
   text: {fileID: 3481479655566341213}
   image: {fileID: 9054260974563304476}

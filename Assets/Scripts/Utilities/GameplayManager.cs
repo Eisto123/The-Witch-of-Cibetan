@@ -45,11 +45,9 @@ public class GameplayManager : MonoBehaviour
     private void GenerateElement(){
         
         if(Random.Range(0,2)==0){
-            Debug.Log("water");
             ElementPrefab.GetComponent<Elements>().type = ElementType.Water;
         }
         else{
-            Debug.Log("fire");
             ElementPrefab.GetComponent<Elements>().type = ElementType.Fire;
         }
 

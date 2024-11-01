@@ -34,4 +34,15 @@ public class SpellCards : Cards
         //only spell card can drag
         
     }
+
+    public override void OnPointerEnter(PointerEventData eventData)
+    {
+        base.OnPointerEnter(eventData);
+        rect.anchoredPosition += hoverOffset;
+    }
+    public override void OnPointerExit(PointerEventData eventData)
+    {
+        base.OnPointerExit(eventData);
+        rect.anchoredPosition = Vector3.zero;
+    }
 }

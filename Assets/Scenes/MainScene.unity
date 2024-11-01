@@ -554,11 +554,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 372148723}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -334.8}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1500, y: 400}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &368258734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -572,10 +572,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotPrefab: {fileID: 9122577501531494263, guid: d221b1253ca2df14990b8c05c9f17de4, type: 3}
+  castSpellEventSO: {fileID: 11400000, guid: cf40217dfeb20214ab80efbe4b48d1e5, type: 2}
   cardWidth: 250
   maxCard: 7
   cards: []
   Slots: []
+  angleBetweenCards: 6
+  radius: 1500
+  centerOffset: 1600
+  cardMoveSpeed: 6
+  lerpDuration: 1
 --- !u!1 &372148719
 GameObject:
   m_ObjectHideFlags: 0
@@ -2896,6 +2902,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   castMethod: 0
+  OnCastEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 368258734}
+        m_TargetAssemblyTypeName: CardDeck, Assembly-CSharp
+        m_MethodName: ResetPos
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   skillShotCanvas: {fileID: 1834952076}
   skillShotImage: {fileID: 1309686702}
   rangeCanvas: {fileID: 1267516189}
