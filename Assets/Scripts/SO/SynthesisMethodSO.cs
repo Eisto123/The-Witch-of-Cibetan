@@ -20,6 +20,9 @@ public class SynthesisMethodSO : ScriptableObject
             if(element2 == ElementType.Fire){
                 spellName = SpellName.Storm;
             }
+            if(element2 == ElementType.Earth){
+                spellName = SpellName.LandForming;
+            }
             return spellName;
             
             case ElementType.Fire:
@@ -28,6 +31,21 @@ public class SynthesisMethodSO : ScriptableObject
             }
             if(element2 == ElementType.Fire){
                 spellName = SpellName.Fireball;
+            }
+            if(element2 == ElementType.Earth){
+                spellName = SpellName.Meteorites;
+            }
+            return spellName;
+            
+            case ElementType.Earth:
+            if(element2 == ElementType.Water){
+                spellName = SpellName.LandForming;
+            }
+            if(element2 == ElementType.Fire){
+                spellName = SpellName.Meteorites;
+            }
+            if(element2 == ElementType.Earth){
+                spellName = SpellName.RockRing;
             }
             return spellName;
 

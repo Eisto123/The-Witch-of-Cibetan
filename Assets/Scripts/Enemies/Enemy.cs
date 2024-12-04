@@ -42,6 +42,10 @@ public class Enemy : MonoBehaviour
         isStun = false;
     }
 
+    public void Stun(){
+        isStun = true;
+        StartCoroutine(OnStun());
+    }
     public void PushBack(float power){
         isStun = true;
         rb.AddForce(-transform.forward * power,ForceMode.Impulse);

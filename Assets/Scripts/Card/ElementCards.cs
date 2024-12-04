@@ -7,6 +7,7 @@ public class ElementCards : Cards
     public ElementType elementType;
     public Text text;
     public Image image;
+    
     public Vector2 clickOffset;
 
     private bool startSelecting = false;
@@ -17,7 +18,7 @@ public class ElementCards : Cards
         
         elementType = cardSO.elementType;
         text.text = cardSO.elementName;
-
+        image.sprite = cardSO.image;
     }
 
     public override void OnPointerDown(PointerEventData eventData)
@@ -47,7 +48,6 @@ public class ElementCards : Cards
         base.OnPointerExit(eventData);
         if(!isSelected){
             rect.anchoredPosition = Vector3.zero;
-            Debug.Log("called");
         }
     }
 

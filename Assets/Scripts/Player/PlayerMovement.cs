@@ -20,6 +20,10 @@ public class PlayerMovement : MonoBehaviour
     private float currentVelocity = 0.0f;
     public float MoveRadius = 10f;
     private Vector3 initialPos;
+    public float rayDistance = 1.2f;
+    public float detectRadius = 1;
+    private bool onPlain;
+    public LayerMask layerMask;
 
     private void Awake()
     {
@@ -39,16 +43,25 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        inputValue = playerControl.Gameplay.Move.ReadValue<Vector2>();
-
-        if((transform.position-initialPos).magnitude>MoveRadius){
-            transform.position -= Vector3.down*gravityValue*Time.deltaTime;
+        if (Physics.SphereCast(transform.position, detectRadius, Vector3.down, out RaycastHit hit, rayDistance,layerMask))//layermask is Plain
+        {
+            onPlain = true;
+            inputValue = playerControl.Gameplay.Move.ReadValue<Vector2>();
         }
+        else
+            {
+                controller.velocity.Set(0,0,0);
+                onPlain = false;
+                transform.position -= Vector3.down*gravityValue*Time.deltaTime;
+            }  
     }
 
     private void FixedUpdate()
     {
-        Move();
+        if(onPlain){
+            Move();
+        }
+        
     }
 
     private void Move()
@@ -66,5 +79,10 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(0,angle,0);
         
         controller.Move(playerMovement.normalized*speed*Time.deltaTime);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position+Vector3.down*rayDistance, detectRadius);
     }
 }

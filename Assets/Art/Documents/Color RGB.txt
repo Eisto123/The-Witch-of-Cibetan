@@ -1,0 +1,4 @@
+Fire: c12c1f
+Water: 6e9bc5
+Wood: 4c8045
+Rock: d9883d

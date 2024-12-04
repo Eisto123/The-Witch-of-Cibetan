@@ -8,6 +8,7 @@ public class CardManager : MonoBehaviour
 {
     public ElementCardSO water;
     public ElementCardSO fire;
+    public ElementCardSO earth;
 
     [Header("CardPrefab")]
     public GameObject elementCard;
@@ -41,6 +42,11 @@ public class CardManager : MonoBehaviour
                 return;
             case ElementType.Fire:
                 elementCard.GetComponent<ElementCards>().Inicialize(fire);
+                cardDeck.GetComponent<CardDeck>().AddCard(elementCard);
+                return;
+            
+            case ElementType.Earth:
+                elementCard.GetComponent<ElementCards>().Inicialize(earth);
                 cardDeck.GetComponent<CardDeck>().AddCard(elementCard);
                 return;
         }

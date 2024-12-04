@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6801955674270069261}
   - component: {fileID: 5183114451522387102}
   - component: {fileID: 1480134310244296534}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -149,6 +149,7 @@ MonoBehaviour:
   player: {fileID: 0}
   moveSpeed: 0
   gameplayManager: {fileID: 0}
+  isStun: 0
 --- !u!1 &7802768849886459999
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,9 +159,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5632934748398888203}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

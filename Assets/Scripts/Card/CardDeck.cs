@@ -113,6 +113,11 @@ public class CardDeck : MonoBehaviour
                 cards[index].GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
                 }
             }
+            else{
+                if(index == cards.Count - 1){
+                    cards[index].GetComponent<RectTransform>().anchoredPosition = Vector3.up*-centerOffset/4;
+                }
+            }
             
             cards[index].GetComponent<RectTransform>().localRotation = Quaternion.Euler(0,0,0);
             cards[index].GetComponent<Cards>().currentSlot = index;

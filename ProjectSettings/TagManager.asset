@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Plain
+  - Element
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - UI
   - Elements
   - Plain
-  - 
+  - Enemy
   - 
   - 
   - 

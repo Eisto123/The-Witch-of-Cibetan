@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
+//using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -9,8 +9,10 @@ public class CastSpellManager : MonoBehaviour
 {
     private GameObject Player;
     public CastMethod castMethod;
+    public CardDeck cardDeck;
 
     public UnityEvent OnCastEnd;
+
 
     [Header("SpellCanvas")]
     public Canvas skillShotCanvas;
@@ -19,6 +21,7 @@ public class CastSpellManager : MonoBehaviour
     public Canvas rangeIndicator;
     public Image rangeImage;
     public float maxRangeDistance = 7f;
+    public Canvas selfIndicator;
 
 
     public CastSpellEventSO spellEventSO;
@@ -32,8 +35,11 @@ public class CastSpellManager : MonoBehaviour
     public Wave wavePrefab;
     public Fireball fireballPrefab;
     public Storm stormPrefab;
+    public LandForming landFormingPrefab;
+    public Meteorites meteoritesPrefab;
+    public RockRing rockRingPrefab;
 
-    public CardDeck cardDeck;
+
     
 
     private void Awake()
@@ -45,6 +51,7 @@ public class CastSpellManager : MonoBehaviour
         skillShotCanvas.enabled = false;
         rangeCanvas.enabled = false;
         rangeIndicator.enabled = false;
+        selfIndicator.enabled = false;
 
     }
 
@@ -63,6 +70,7 @@ public class CastSpellManager : MonoBehaviour
         
         OnSkillShot();
         OnRangeShot();
+        OnSelfCast();
     }
 
     public void OnSkillShot(){
@@ -109,6 +117,15 @@ public class CastSpellManager : MonoBehaviour
                 if(currentCard.spellName == SpellName.Storm){
                     Instantiate(stormPrefab,rangeCanvas.transform.position,Quaternion.identity);
                 }
+                if(currentCard.spellName == SpellName.Meteorites){
+                    Instantiate(meteoritesPrefab,rangeCanvas.transform.position+Vector3.up*5,Quaternion.identity);
+                    
+                }
+                if(currentCard.spellName == SpellName.LandForming){
+                    Instantiate(landFormingPrefab,rangeCanvas.transform.position,Quaternion.identity);
+                    
+                }
+
                 OnCastEnd.Invoke();
                 cardDeck.RemoveCard(currentCard.currentSlot);
                 rangeCanvas.enabled = false;
@@ -117,20 +134,38 @@ public class CastSpellManager : MonoBehaviour
         }
     }
 
+    private void OnSelfCast(){
+        if(selfIndicator.enabled){
+            if(Input.GetMouseButtonUp(0)){
+                if(currentCard.spellName == SpellName.RockRing){
+                    Instantiate(rockRingPrefab,Player.transform.position,Quaternion.identity,Player.transform);
+                }
+                OnCastEnd.Invoke();
+                cardDeck.RemoveCard(currentCard.currentSlot);
+                selfIndicator.enabled = false;
+            }
+            
+        }
+    }
+
     public void OnCastSpell(SpellCards spellcard){
         switch(spellcard.castMethod){
                 case CastMethod.SkillShot:
                 skillShotCanvas.enabled = true;
                 currentCard = spellcard;
-                //perform actual skill and turn off.
                 return;
 
                 case CastMethod.Range:
                 rangeCanvas.enabled = true;
                 rangeIndicator.enabled = true;
                 currentCard = spellcard;
-
                 return;
+
+                case CastMethod.Self:
+                selfIndicator.enabled = true;
+                currentCard = spellcard;
+                return;
+
             }
         //enable canvas
     }

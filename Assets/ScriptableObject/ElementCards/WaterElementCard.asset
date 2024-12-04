@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementType: 0
   elementName: Water
-  image: {fileID: 0}
+  image: {fileID: -525913551, guid: 2008dda5fdb73ec4bb92f8498d2cb855, type: 3}

@@ -10,6 +10,7 @@ public class Elements : MonoBehaviour
     public UnityEvent<ElementType> PickUpEvent;
     public Material waterMaterial;
     public Material fireMaterial;
+    public Material earthMaterial;
 
     private Renderer rd;
 
@@ -22,6 +23,9 @@ public class Elements : MonoBehaviour
                 return;
             case ElementType.Fire:
                 rd.material = fireMaterial;
+                return;
+            case ElementType.Earth:
+                rd.material = earthMaterial;
                 return;
 
         }

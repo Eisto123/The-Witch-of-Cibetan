@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3802120259708641601}
   m_Layer: 6
   m_Name: Element
-  m_TagString: Untagged
+  m_TagString: Element
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7603307436735963610}
   serializedVersion: 2
   m_LocalRotation: {x: 0.35355338, y: -0.1464466, z: 0.35355338, w: 0.8535535}
-  m_LocalPosition: {x: 2.76, y: 0.55, z: 0}
+  m_LocalPosition: {x: 0, y: 0.55, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2d7397b96609544ba15dcd92b8d3988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
   PickUpEvent:
     m_PersistentCalls:
       m_Calls:
@@ -136,3 +136,4 @@ MonoBehaviour:
         m_CallState: 2
   waterMaterial: {fileID: 2100000, guid: 3803649a2a05f254fa199b26012214a4, type: 2}
   fireMaterial: {fileID: 2100000, guid: 56193c178f9d92c448574c0c6b6d20c4, type: 2}
+  earthMaterial: {fileID: 2100000, guid: b0527c2cb45dfe3478c78cd833b99290, type: 2}
