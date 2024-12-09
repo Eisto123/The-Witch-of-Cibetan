@@ -10,33 +10,12 @@ public class Enemy : MonoBehaviour
 {
     public GameObject player;
     public float moveSpeed;
-    private Rigidbody rb;
+    public Rigidbody rb;
     public GameplayManager gameplayManager;
     public bool isStun;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-        player = GameObject.FindWithTag("Player");
-        gameplayManager = GameObject.Find("GameplayManager").GetComponent<GameplayManager>();
-    }
 
-    private void FixedUpdate()
-    {
-        if(!isStun){
-            transform.LookAt(player.transform);
-            //Vector3 direction = (player.transform.position - transform.position).normalized;
-	  	    //rb.MovePosition(transform.position + direction * moveSpeed * Time.deltaTime);
-            rb.AddForce(transform.forward*moveSpeed*Time.deltaTime);
-        }
-        
-        if(transform.position.y <-20){
-            gameplayManager.enemyLeft--;
-            gameplayManager.UpdateUI();
-            Destroy(this.gameObject);
-        }
-    }
+    
     private IEnumerator OnStun(){
         yield return new WaitForSeconds(1f);
         isStun = false;

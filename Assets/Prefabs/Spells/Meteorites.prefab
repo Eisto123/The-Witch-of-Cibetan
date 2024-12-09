@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectRadius: 1
+  detectOffset: 2
 --- !u!54 &7044612484387827324
 Rigidbody:
   m_ObjectHideFlags: 0

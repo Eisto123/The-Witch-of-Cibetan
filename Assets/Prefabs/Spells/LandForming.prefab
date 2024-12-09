@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   piece: {fileID: 6881344408203756435, guid: 91384681e6e41d94f98e6d2883473246, type: 3}
   plainParent: {fileID: 0}
-  formingRadius: 2.5
+  formingRadius: 3

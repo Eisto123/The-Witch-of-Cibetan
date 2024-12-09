@@ -8,3 +8,7 @@ public enum SpellName{
 public enum CastMethod{
     SkillShot, Range, Cone, Self
 }
+
+public enum BossState{
+    Dashing, Slaying, Shooting
+}

@@ -5,9 +5,10 @@ using UnityEngine;
 public class Meteorites : MonoBehaviour
 {
     public int detectRadius;
+    public int detectOffset;
     private void Update()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position+ Vector3.down,detectRadius);
+        Collider[] colliders = Physics.OverlapSphere(transform.position+ Vector3.down*detectOffset,detectRadius);
         foreach(var item in colliders){
             if(item.tag == "Plain"){
                 item.GetComponent<Rigidbody>().isKinematic = false;
