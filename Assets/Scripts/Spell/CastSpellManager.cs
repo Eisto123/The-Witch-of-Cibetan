@@ -123,7 +123,6 @@ public class CastSpellManager : MonoBehaviour
                 }
                 if(currentCard.spellName == SpellName.LandForming){
                     Instantiate(landFormingPrefab,rangeCanvas.transform.position,Quaternion.identity);
-                    
                 }
 
                 OnCastEnd.Invoke();

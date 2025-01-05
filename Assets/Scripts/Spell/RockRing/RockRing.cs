@@ -15,19 +15,26 @@ public class RockRing : MonoBehaviour
     public float orbitRadius = 2f;
     public float orbitSpeed = 50f;
     public float orbitTime;
-    private float orbitTimer;
+    private static float orbitTimer = 0;
 
     private float[] angles;
 
     void Start()
     {
-        angles = new float[orbitingObjects.Length];
-        float angleStep = 360f / orbitingObjects.Length;
-        orbitTimer = orbitTime;
-        for (int i = 0; i < orbitingObjects.Length; i++)
-        {
-            angles[i] = i * angleStep;
-            orbitingObjects[i]  = Instantiate(rock);
+        if(orbitTimer>0){
+            orbitTimer+=orbitTime;
+            Destroy(this.gameObject);
+            return;
+        }
+        else{
+            angles = new float[orbitingObjects.Length];
+            float angleStep = 360f / orbitingObjects.Length;
+            orbitTimer = orbitTime;
+            for (int i = 0; i < orbitingObjects.Length; i++)
+            {
+                angles[i] = i * angleStep;
+                orbitingObjects[i]  = Instantiate(rock);
+            }
         }
     }
 

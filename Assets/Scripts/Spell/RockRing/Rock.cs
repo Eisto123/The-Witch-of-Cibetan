@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Rock : MonoBehaviour
 {
-    // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
 
         if(other.tag == "Enemy"){
-            other.GetComponent<Enemy>().Stun();
+            //other.GetComponent<Enemy>().Stun();
+            other.GetComponent<Enemy>().PushBack(0.5f);
         }
     }
 }
