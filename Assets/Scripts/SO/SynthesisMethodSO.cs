@@ -21,7 +21,7 @@ public class SynthesisMethodSO : ScriptableObject
                 spellName = SpellName.Storm;
             }
             if(element2 == ElementType.Earth){
-                spellName = SpellName.LandForming;
+                spellName = SpellName.RockRing;
             }
             return spellName;
             
@@ -39,13 +39,13 @@ public class SynthesisMethodSO : ScriptableObject
             
             case ElementType.Earth:
             if(element2 == ElementType.Water){
-                spellName = SpellName.LandForming;
+                spellName = SpellName.RockRing;
             }
             if(element2 == ElementType.Fire){
                 spellName = SpellName.Meteorites;
             }
             if(element2 == ElementType.Earth){
-                spellName = SpellName.RockRing;
+                spellName = SpellName.Earthquake;
             }
             return spellName;
 

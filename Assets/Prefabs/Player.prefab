@@ -87,6 +87,7 @@ MonoBehaviour:
   landFormingPrefab: {fileID: 317394964208157853, guid: 9fe390cc0cb314a469cb10062b9355ab, type: 3}
   meteoritesPrefab: {fileID: 2446940493775640292, guid: f9bad7bdcac546445be48293b037de49, type: 3}
   rockRingPrefab: {fileID: 9162925585496138901, guid: 69477794548eaeb47b0f0d8815e4b158, type: 3}
+  earthquakePrefab: {fileID: 3901861120282119636, guid: 7c4eb8e766de31846a24a963001e87cd, type: 3}
 --- !u!1 &599452589982499563
 GameObject:
   m_ObjectHideFlags: 0
@@ -1028,9 +1029,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7921396507225064520}
     m_Modifications:
+    - target: {fileID: 634933995333010992, guid: 5683443610e699540880e932f87801fc, type: 3}
+      propertyPath: m_VersionIndex
+      value: 3579
+      objectReference: {fileID: 0}
+    - target: {fileID: 985647399289457784, guid: 5683443610e699540880e932f87801fc, type: 3}
+      propertyPath: m_VersionIndex
+      value: 4477
+      objectReference: {fileID: 0}
+    - target: {fileID: 2810247723640908859, guid: 5683443610e699540880e932f87801fc, type: 3}
+      propertyPath: m_VersionIndex
+      value: 9123
+      objectReference: {fileID: 0}
+    - target: {fileID: 3418220709412458981, guid: 5683443610e699540880e932f87801fc, type: 3}
+      propertyPath: m_VersionIndex
+      value: 10298
+      objectReference: {fileID: 0}
     - target: {fileID: 4097995055944219610, guid: 5683443610e699540880e932f87801fc, type: 3}
       propertyPath: m_Name
       value: PlayerVisual
+      objectReference: {fileID: 0}
+    - target: {fileID: 7128396834289419924, guid: 5683443610e699540880e932f87801fc, type: 3}
+      propertyPath: m_VersionIndex
+      value: 3656
       objectReference: {fileID: 0}
     - target: {fileID: 7851142676993381395, guid: 5683443610e699540880e932f87801fc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1072,7 +1093,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8924607860476858887, guid: 5683443610e699540880e932f87801fc, type: 3}
+      propertyPath: m_VersionIndex
+      value: 3656
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5147563621917285715, guid: 5683443610e699540880e932f87801fc, type: 3}
+    - {fileID: 8894331074549657776, guid: 5683443610e699540880e932f87801fc, type: 3}
+    - {fileID: 6369825313082160709, guid: 5683443610e699540880e932f87801fc, type: 3}
+    - {fileID: 3620913168608628659, guid: 5683443610e699540880e932f87801fc, type: 3}
+    - {fileID: 2940538393633519185, guid: 5683443610e699540880e932f87801fc, type: 3}
+    - {fileID: 5002011590019306939, guid: 5683443610e699540880e932f87801fc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

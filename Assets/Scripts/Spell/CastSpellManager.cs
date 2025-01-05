@@ -38,7 +38,7 @@ public class CastSpellManager : MonoBehaviour
     public LandForming landFormingPrefab;
     public Meteorites meteoritesPrefab;
     public RockRing rockRingPrefab;
-
+    public Earthquake earthquakePrefab;
 
     
 
@@ -121,9 +121,7 @@ public class CastSpellManager : MonoBehaviour
                     Instantiate(meteoritesPrefab,rangeCanvas.transform.position+Vector3.up*5,Quaternion.identity);
                     
                 }
-                if(currentCard.spellName == SpellName.LandForming){
-                    Instantiate(landFormingPrefab,rangeCanvas.transform.position,Quaternion.identity);
-                }
+                
 
                 OnCastEnd.Invoke();
                 cardDeck.RemoveCard(currentCard.currentSlot);
@@ -138,6 +136,9 @@ public class CastSpellManager : MonoBehaviour
             if(Input.GetMouseButtonUp(0)){
                 if(currentCard.spellName == SpellName.RockRing){
                     Instantiate(rockRingPrefab,Player.transform.position,Quaternion.identity,Player.transform);
+                }
+                if(currentCard.spellName == SpellName.Earthquake){
+                    Instantiate(earthquakePrefab,Player.transform.position,Quaternion.identity,Player.transform);
                 }
                 OnCastEnd.Invoke();
                 cardDeck.RemoveCard(currentCard.currentSlot);
