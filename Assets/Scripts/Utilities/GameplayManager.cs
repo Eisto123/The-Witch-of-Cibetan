@@ -26,9 +26,7 @@ public class GameplayManager : MonoBehaviour
     public Text EnemyText;
     public Text tutorialText;
     public GameObject bossPrefab;
-    public static bool onTutorial = true;
     public PickUpEventSO pickUpEvent;
-    private int tutorialSequence=0;
     public bool onBossStage;
 
     public GameObject Win;
@@ -38,18 +36,8 @@ public class GameplayManager : MonoBehaviour
     {
         Time.timeScale = 1;
         UpdateUI();
-        tutorialText.gameObject.SetActive(onTutorial);
         enemyTimeCounter = generateEnemyTime;
         onBossStage = false;
-    }
-
-    private void OnEnable()
-    {
-        pickUpEvent.OnEventRise += UpdateDrawCardTutorial;
-    }
-    private void OnDisable()
-    {
-        pickUpEvent.OnEventRise -= UpdateDrawCardTutorial;
     }
 
     private void Update()
@@ -97,26 +85,30 @@ public class GameplayManager : MonoBehaviour
     }
 
     private void GenerateEnemy(){
+        var enemy = Instantiate (enemyPrefab);
+        LaunchObjectToPlain(enemy);
+    }
+
+    public void LaunchObjectToPlain(GameObject gameObject){
         Vector3 endPos = Random.insideUnitSphere * radius;
         endPos = new Vector3 (endPos.x, 0.5f, endPos.z);
         Vector3 insPos = Random.onUnitSphere*enemyInstanciateRadius;
         insPos = new Vector3 (insPos.x, 0.5f, insPos.z);
-        var enemy = Instantiate (enemyPrefab,insPos,Quaternion.identity);
-        Rigidbody rb = enemy.GetComponentInChildren<Rigidbody>();
-        Vector3 velocity = CalculateVelocity(endPos, insPos, enemyShootAngle);
-        rb.velocity = velocity;
-        
-    }
-    public void LaunchBossBack(GameObject boss){
-        Vector3 endPos = Random.insideUnitSphere * radius;
-        endPos = new Vector3 (endPos.x, 0.5f, endPos.z);
-        Vector3 insPos = Random.onUnitSphere*enemyInstanciateRadius;
-        insPos = new Vector3 (insPos.x, 0.5f, insPos.z);
-        boss.transform.position = insPos;
-        Rigidbody rb = boss.GetComponent<Rigidbody>();
+        gameObject.transform.position = insPos;
+        Rigidbody rb = gameObject.GetComponentInChildren<Rigidbody>();
         Vector3 velocity = CalculateVelocity(endPos, insPos, enemyShootAngle);
         rb.velocity = velocity;
     }
+    // public void LaunchBossBack(GameObject boss){
+    //     Vector3 endPos = Random.insideUnitSphere * radius;
+    //     endPos = new Vector3 (endPos.x, 0.5f, endPos.z);
+    //     Vector3 insPos = Random.onUnitSphere*enemyInstanciateRadius;
+    //     insPos = new Vector3 (insPos.x, 0.5f, insPos.z);
+    //     boss.transform.position = insPos;
+    //     Rigidbody rb = boss.GetComponent<Rigidbody>();
+    //     Vector3 velocity = CalculateVelocity(endPos, insPos, enemyShootAngle);
+    //     rb.velocity = velocity;
+    // }
     private Vector3 CalculateVelocity(Vector3 target, Vector3 origin, float angle)
     {
         Vector3 direction = target - origin;
@@ -133,35 +125,7 @@ public class GameplayManager : MonoBehaviour
         return velocity;
     }
 
-    public void UpdateDrawCardTutorial(ElementType elementType){
-        if(tutorialSequence<1&&onTutorial){
-            tutorialText.text = "You get an Element! Now try get another one and click both to sythesis a spell!";
-            tutorialSequence++;
-        }
-        
-    }
-    public void UpdateSynthesisTutorial(){
-        if(tutorialSequence <2&&onTutorial){
-            tutorialText.text = "Amazing! You get your first spell! Drag it toward the enemy to cast it!";
-            tutorialSequence++;
-        }
-        
-    }
-    public void UpdateCastSpellTutorial(){
-        if(tutorialSequence<3&onTutorial){
-            StartCoroutine(CastSpellTutorial());
-            tutorialSequence++;
-        }
-        
-        
-    }
-    private IEnumerator CastSpellTutorial(){
-        tutorialText.text = "Now you have cast a spell! There are many combination of element to Explore!";
-        yield return new WaitForSeconds(5f);
-        tutorialText.text = "Enjoy the game and Don't get CAUGHT!";
-        yield return new WaitForSeconds(3f);
-        tutorialText.text = "";
-    }
+
 
     public void UpdateUI(){
         HPText.text = "HP: "+ HP;
@@ -182,13 +146,12 @@ public class GameplayManager : MonoBehaviour
         if(enemyLeft == 0){
             onBossStage = true;
             var boss = Instantiate(bossPrefab);
-            LaunchBossBack(boss);
+            LaunchObjectToPlain(boss);
         }
 
     }
 
     public void RestartGame(){
-        onTutorial = false;
         SceneManager.LoadScene("MainScene");
         
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,15 +10,12 @@ public class Fireball : MonoBehaviour
     public float fireSpeed;
     public float spellDistance;
     private Vector3 initialPos;
-    private Vector3 DetectPos;
+    //private Vector3 DetectPos;
 
+    private CinemachineImpulseSource source;
 
-    [Header("Impact")]
-    [Range(0,1000)]
-    public float Force; // Netwons
-    [Range(0.1f, 1)]
-    public float Radius = 0.25f; // m
-    public float detectRadius = 5;
+    public float Force;
+    public float detectRadius = 1;
 
 
     public bool explode = false;
@@ -25,17 +23,18 @@ public class Fireball : MonoBehaviour
     private void Awake()
     {
         initialPos = transform.position;
-        DetectPos = initialPos;
+        //DetectPos = initialPos;
+        source = GetComponent<CinemachineImpulseSource>();
     }
 
     private void Update()
     {
         transform.position += transform.forward*fireSpeed*Time.deltaTime;
-        //DetectPos = transform.position +transform.forward;
+        //DetectPos = transform.position;
         
         if(explode){
-            
-            Collider[] colliders = Physics.OverlapSphere(DetectPos, detectRadius); 
+            ScreenShakeManager.instance.CameraShake(source);
+            Collider[] colliders = Physics.OverlapSphere(transform.position, detectRadius); 
             foreach (Collider hit in colliders) {
                 if(hit.tag == "Enemy"){
                     Enemy enemy = hit.GetComponent<Enemy>();
@@ -43,8 +42,7 @@ public class Fireball : MonoBehaviour
                     enemy.PushBack(Force);
                 }
             }
-            
-        }
+            }
             Destroy(this.gameObject);
             
         }
@@ -52,28 +50,10 @@ public class Fireball : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    // private void FixedUpdate()
-    // {
-        
-    //     if(explode){ 
-    //      Vector3 explosionPos = transform.position; 
-    //      Collider[] colliders = Physics.OverlapSphere(explosionPos, detectRadius); 
-         
-    //      foreach (Collider hit in colliders) {
-    //         Debug.Log(hit);
-    //         Rigidbody rb = hit.GetComponent<Rigidbody>();
-    //         if (rb != null) { 
-    //            rb.AddExplosionForce(Force, explosionPos, detectRadius); 
-    //         } 
-    //     }
-    //     Destroy(this.gameObject);
-    //     } 
-    // }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if(other.gameObject.tag == "Enemy"){
             explode = true;
-            
         }
     }
 }

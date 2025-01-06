@@ -121,8 +121,6 @@ public class CastSpellManager : MonoBehaviour
                     Instantiate(meteoritesPrefab,rangeCanvas.transform.position+Vector3.up*5,Quaternion.identity);
                     
                 }
-                
-
                 OnCastEnd.Invoke();
                 cardDeck.RemoveCard(currentCard.currentSlot);
                 rangeCanvas.enabled = false;

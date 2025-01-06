@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Cinemachine;
 public class Storm : MonoBehaviour
 {
     [Header("Impact")]
@@ -9,12 +9,25 @@ public class Storm : MonoBehaviour
     public float Force;
     public float Radius;
     public float lift;
+    private Vector3 explosionPos;
+    public GameObject strike;
+    private CinemachineImpulseSource source;
 
+    private void Awake()
+    {
+        source = GetComponent<CinemachineImpulseSource>();
+    }
     private void Start()
     {
-        Vector3 explosionPos = transform.position; 
-         Collider[] colliders = Physics.OverlapSphere(explosionPos, Radius); 
-         
+        explosionPos = transform.position;
+        StartCoroutine(DestroyProcess());
+        
+    }
+    private IEnumerator DestroyProcess(){
+        yield return new WaitForSeconds(0.5f);
+        strike.SetActive(false);
+        
+        Collider[] colliders = Physics.OverlapSphere(explosionPos, Radius); 
          foreach (Collider hit in colliders) {
             if(hit.tag == "Enemy"){
                 Enemy enemy = hit.GetComponent<Enemy>();
@@ -26,7 +39,10 @@ public class Storm : MonoBehaviour
             }
             
         }
+        ScreenShakeManager.instance.CameraShake(source);
+        yield return new WaitForSeconds(1f);
         Destroy(this.gameObject);
     }
+
 
 }

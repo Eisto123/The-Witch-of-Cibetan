@@ -57,7 +57,7 @@ public class Boss : Enemy
                 return;
             }
             rb.velocity = Vector3.zero;
-            gameplayManager.LaunchBossBack(this.gameObject);
+            gameplayManager.LaunchObjectToPlain(this.gameObject);
             bossState = bossState + 1;
         }
         
