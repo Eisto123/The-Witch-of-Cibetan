@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using JetBrains.Annotations;
 
 public class GameplayManager : MonoBehaviour
 {
@@ -22,12 +23,13 @@ public class GameplayManager : MonoBehaviour
     public int HP = 3;
     public Text HPText;
     public int enemyLeft = 2;
-    public int bossHP = 3;
     public Text EnemyText;
     public Text tutorialText;
     public GameObject bossPrefab;
     public PickUpEventSO pickUpEvent;
     public bool onBossStage;
+    private BossState currentState;
+    private GameObject boss;
 
     public GameObject Win;
     public GameObject Lose;
@@ -43,13 +45,14 @@ public class GameplayManager : MonoBehaviour
     private void Update()
     {
         Counter();
-        if(HP == 0||transform.position.y<-20){
+        if(HP <= 0||transform.position.y<-20){
             
             Lose.SetActive(true);
             Time.timeScale = 0;
         }
-        if(bossHP == 0){
+        if(currentState == BossState.Die){
             Win.SetActive(true);
+            Time.timeScale = 0;
         }
         
     }
@@ -63,7 +66,7 @@ public class GameplayManager : MonoBehaviour
             elementTimeCounter = generateElementTime;
         }
         if(enemyTimeCounter<= 0&&onBossStage){
-            GenerateEnemy();
+            //GenerateEnemy();
             enemyTimeCounter = generateEnemyTime;
         }
     }
@@ -99,16 +102,6 @@ public class GameplayManager : MonoBehaviour
         Vector3 velocity = CalculateVelocity(endPos, insPos, enemyShootAngle);
         rb.velocity = velocity;
     }
-    // public void LaunchBossBack(GameObject boss){
-    //     Vector3 endPos = Random.insideUnitSphere * radius;
-    //     endPos = new Vector3 (endPos.x, 0.5f, endPos.z);
-    //     Vector3 insPos = Random.onUnitSphere*enemyInstanciateRadius;
-    //     insPos = new Vector3 (insPos.x, 0.5f, insPos.z);
-    //     boss.transform.position = insPos;
-    //     Rigidbody rb = boss.GetComponent<Rigidbody>();
-    //     Vector3 velocity = CalculateVelocity(endPos, insPos, enemyShootAngle);
-    //     rb.velocity = velocity;
-    // }
     private Vector3 CalculateVelocity(Vector3 target, Vector3 origin, float angle)
     {
         Vector3 direction = target - origin;
@@ -125,6 +118,16 @@ public class GameplayManager : MonoBehaviour
         return velocity;
     }
 
+    public void DecreaseEnemy(){
+        if(!onBossStage){
+            enemyLeft--;
+            UpdateUI();
+            if(enemyLeft<=0){
+                onBossStage = true;
+                GenerateBoss();
+            }
+        }
+    }
 
 
     public void UpdateUI(){
@@ -132,28 +135,33 @@ public class GameplayManager : MonoBehaviour
         if(enemyLeft > 0){
             EnemyText.text = "Enemy Left: " + enemyLeft;
         }
-        if(enemyLeft == 0){
-            EnemyText.text = "BossStage";
-            checkBossStage();
-            enemyLeft--;
-        }
         else{
-            EnemyText.text = "BossStage";
+            EnemyText.text = "BossStage: " + currentState;
+        }
+        if(currentState == BossState.Die){
+            EnemyText.text = "WIN";
         }
         
     }
-    private void checkBossStage(){
-        if(enemyLeft == 0){
-            onBossStage = true;
-            var boss = Instantiate(bossPrefab);
+    private void GenerateBoss(){
+        boss = Instantiate(bossPrefab);
+        LaunchObjectToPlain(boss);
+    }
+    public void UpdateBossStage(BossState bossState){
+        currentState = bossState;
+        if(currentState != BossState.Die){
             LaunchObjectToPlain(boss);
+            UpdateUI();
         }
+    }
 
+    public void PlayerTakeDamage(){
+        HP--;
+        UpdateUI();
     }
 
     public void RestartGame(){
         SceneManager.LoadScene("MainScene");
-        
     }
 
 }

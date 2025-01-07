@@ -10,5 +10,5 @@ public enum CastMethod{
 }
 
 public enum BossState{
-    Dashing, Slaying, Shooting
+    Dashing, Slaying, Shooting, Die
 }

@@ -6,19 +6,20 @@ public class Bullet : MonoBehaviour
 {
     public float bulletSpeed;
     public float bulletLifeTime;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         bulletLifeTime -= Time.deltaTime;
         transform.position += transform.forward*bulletSpeed*Time.deltaTime;
         if(bulletLifeTime<=0){
             Destroy(this.gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player"){
+            other.gameObject.GetComponent<PlayerMovement>().TakeDamage();
         }
     }
 }

@@ -15,14 +15,11 @@ public class SmallEnemy : Enemy
     {
         if(!isStun){
             transform.LookAt(player.transform);
-            //Vector3 direction = (player.transform.position - transform.position).normalized;
-	  	    //rb.MovePosition(transform.position + direction * moveSpeed * Time.deltaTime);
             rb.AddForce(transform.forward*moveSpeed*Time.deltaTime);
         }
         
         if(transform.position.y <-20){
-            gameplayManager.enemyLeft--;
-            gameplayManager.UpdateUI();
+            gameplayManager.DecreaseEnemy();
             Destroy(this.gameObject);
         }
     }

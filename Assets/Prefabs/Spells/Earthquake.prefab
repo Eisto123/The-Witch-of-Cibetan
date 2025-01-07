@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35bf925296ffd48429bceee889d23514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  earthquakeRadius: 8
-  force: 10
+  earthquakeRadius: 10
+  force: 12
 --- !u!114 &-8146369740988906308
 MonoBehaviour:
   m_ObjectHideFlags: 0

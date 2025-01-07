@@ -27,15 +27,14 @@ public class Enemy : MonoBehaviour
     }
     public void PushBack(float power){
         isStun = true;
-        rb.AddForce(-transform.forward * power,ForceMode.Impulse);
+        rb.AddForce(-transform.forward * power + new Vector3(0,1f,0),ForceMode.Impulse);
         StartCoroutine(OnStun());
     }
 
     private void OnCollisionEnter(Collision other)
     {
         if(other.gameObject.tag == "Player"){
-            gameplayManager.HP --;
-            gameplayManager.UpdateUI();
+            other.gameObject.GetComponent<PlayerMovement>().TakeDamage();
         }
     }
 }

@@ -27,5 +27,11 @@ public class Wave : MonoBehaviour
     {
         transform.position += transform.forward*waveSpeed*Time.deltaTime;
     }
+    private void OnCollisionEnter(Collision other)
+    {
+        if(other.gameObject.tag == "Enemy"){
+            other.gameObject.GetComponent<Enemy>().Stun();
+        }
+    }
 
 }

@@ -7,6 +7,7 @@ public class Meteorites : MonoBehaviour
     public int detectRadius;
     public int detectOffset;
     private CinemachineImpulseSource source;
+    private bool pushed;
     private void Awake()
     {
         source = GetComponent<CinemachineImpulseSource>();
@@ -19,8 +20,9 @@ public class Meteorites : MonoBehaviour
                 item.GetComponent<Rigidbody>().isKinematic = false;
                 ScreenShakeManager.instance.CameraShake(source);
             }
-            if(item.tag == "Enemy"){
-                item.GetComponent<Enemy>().PushBack(1f);
+            if(item.tag == "Enemy"&&!pushed){
+                item.GetComponent<Enemy>().PushBack(20f);
+                pushed = true;
             }
             if(item.tag == "Element"){
                 Destroy(item.gameObject);

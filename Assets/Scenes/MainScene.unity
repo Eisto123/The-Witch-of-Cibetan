@@ -5387,7 +5387,7 @@ PrefabInstance:
       objectReference: {fileID: 988087609}
     - target: {fileID: 841306942211823888, guid: cff7bf844e69785418eb0c316df2a60e, type: 3}
       propertyPath: m_VersionIndex
-      value: 4480
+      value: 4486
       objectReference: {fileID: 0}
     - target: {fileID: 1067045490934174552, guid: cff7bf844e69785418eb0c316df2a60e, type: 3}
       propertyPath: m_Mesh
@@ -5395,7 +5395,7 @@ PrefabInstance:
       objectReference: {fileID: 388780638}
     - target: {fileID: 1067045490934174552, guid: cff7bf844e69785418eb0c316df2a60e, type: 3}
       propertyPath: m_VersionIndex
-      value: 3582
+      value: 3588
       objectReference: {fileID: 0}
     - target: {fileID: 1317571790613333622, guid: cff7bf844e69785418eb0c316df2a60e, type: 3}
       propertyPath: m_Name
@@ -5411,7 +5411,7 @@ PrefabInstance:
       objectReference: {fileID: 970954016}
     - target: {fileID: 2378274750394005843, guid: cff7bf844e69785418eb0c316df2a60e, type: 3}
       propertyPath: m_VersionIndex
-      value: 9126
+      value: 9132
       objectReference: {fileID: 0}
     - target: {fileID: 2496332491772419124, guid: cff7bf844e69785418eb0c316df2a60e, type: 3}
       propertyPath: cardDeck
@@ -5435,12 +5435,40 @@ PrefabInstance:
       objectReference: {fileID: 27407892}
     - target: {fileID: 2985500338038850701, guid: cff7bf844e69785418eb0c316df2a60e, type: 3}
       propertyPath: m_VersionIndex
-      value: 10301
+      value: 10307
       objectReference: {fileID: 0}
     - target: {fileID: 3120581152458413957, guid: cff7bf844e69785418eb0c316df2a60e, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 990052934}
+    - target: {fileID: 3173162405965228486, guid: cff7bf844e69785418eb0c316df2a60e, type: 3}
+      propertyPath: onDamage.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3173162405965228486, guid: cff7bf844e69785418eb0c316df2a60e, type: 3}
+      propertyPath: onDamage.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3173162405965228486, guid: cff7bf844e69785418eb0c316df2a60e, type: 3}
+      propertyPath: onDamage.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 60573107}
+    - target: {fileID: 3173162405965228486, guid: cff7bf844e69785418eb0c316df2a60e, type: 3}
+      propertyPath: onDamage.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3173162405965228486, guid: cff7bf844e69785418eb0c316df2a60e, type: 3}
+      propertyPath: onDamage.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayerTakeDamage
+      objectReference: {fileID: 0}
+    - target: {fileID: 3173162405965228486, guid: cff7bf844e69785418eb0c316df2a60e, type: 3}
+      propertyPath: onDamage.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameplayManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3173162405965228486, guid: cff7bf844e69785418eb0c316df2a60e, type: 3}
+      propertyPath: onDamage.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5637850365042698047, guid: cff7bf844e69785418eb0c316df2a60e, type: 3}
       propertyPath: Win
       value: 
@@ -5458,6 +5486,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1578205946}
     - target: {fileID: 5637850365042698047, guid: cff7bf844e69785418eb0c316df2a60e, type: 3}
+      propertyPath: enemyLeft
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5637850365042698047, guid: cff7bf844e69785418eb0c316df2a60e, type: 3}
       propertyPath: tutorialText
       value: 
       objectReference: {fileID: 1644110706}
@@ -5471,7 +5503,7 @@ PrefabInstance:
       objectReference: {fileID: 990052934}
     - target: {fileID: 7272312866716488700, guid: cff7bf844e69785418eb0c316df2a60e, type: 3}
       propertyPath: m_VersionIndex
-      value: 3659
+      value: 3665
       objectReference: {fileID: 0}
     - target: {fileID: 7921396507225064520, guid: cff7bf844e69785418eb0c316df2a60e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5519,7 +5551,7 @@ PrefabInstance:
       objectReference: {fileID: 729911716}
     - target: {fileID: 9069060743429965679, guid: cff7bf844e69785418eb0c316df2a60e, type: 3}
       propertyPath: m_VersionIndex
-      value: 3659
+      value: 3665
       objectReference: {fileID: 0}
     - target: {fileID: 9208227018660744867, guid: cff7bf844e69785418eb0c316df2a60e, type: 3}
       propertyPath: m_Mesh

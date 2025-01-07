@@ -7,9 +7,8 @@ public class Rock : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        if(other.tag == "Enemy"){
-            //other.GetComponent<Enemy>().Stun();
-            other.GetComponent<Enemy>().PushBack(0.5f);
+        if(other.gameObject.tag == "Enemy"){
+            other.gameObject.GetComponent<Enemy>().PushBack(2f);
         }
     }
 }

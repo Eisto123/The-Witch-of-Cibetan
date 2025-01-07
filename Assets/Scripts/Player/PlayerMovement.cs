@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Scripting.APIUpdating;
 
@@ -23,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     public float rayDistance = 1.2f;
     public float detectRadius = 1;
     private bool onPlain;
+    public UnityEvent onDamage;
     public LayerMask layerMask;
 
     private void Awake()
@@ -80,7 +82,12 @@ public class PlayerMovement : MonoBehaviour
         
         controller.Move(playerMovement.normalized*speed*Time.deltaTime);
     }
+    public void TakeDamage(){
+        //shake
+        //受击animation
+        onDamage.Invoke();
 
+    }
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(transform.position+Vector3.down*rayDistance, detectRadius);

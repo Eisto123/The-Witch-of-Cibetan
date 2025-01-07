@@ -151,7 +151,6 @@ MonoBehaviour:
   fireSpeed: 15
   spellDistance: 8
   Force: 15
-  Radius: 0.25
   detectRadius: 5
   explode: 0
 --- !u!114 &1137491735723994520

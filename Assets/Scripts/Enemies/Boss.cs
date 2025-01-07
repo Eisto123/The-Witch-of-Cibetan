@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Boss : Enemy
 {
@@ -11,16 +12,12 @@ public class Boss : Enemy
     private float dashTimer;
     public float dashWaitTime;
     public float dashForce;
-    public int bossHealth = 2;
-    public float detectRadius = 1;
     private bool onPlain;
     public int slayRange;
     public GameObject slayindicator;
     private Animator animator;
     public GameObject bullet;
-    public float bulletDistance;
-    public int bulletAmount;
-    public float rotateAngle;
+    public UnityEvent<BossState> onStageChange;
     
     // Start is called before the first frame update
     private void Start()
@@ -37,7 +34,7 @@ public class Boss : Enemy
     // Update is called once per frame
     void Update()
     {
-        gameplayManager.bossHP = bossHealth;
+        
         switch(bossState){
             case BossState.Dashing:
                 OnDash();
@@ -48,17 +45,15 @@ public class Boss : Enemy
             case BossState.Shooting:
                 OnShoot();
                 break;
+            case BossState.Die:
+                Destroy(this.gameObject);
+                break;
         }
 
         if(transform.position.y <-10){
-            bossHealth--;
-            if(bossHealth == 0){
-                Destroy(this.gameObject);
-                return;
-            }
             rb.velocity = Vector3.zero;
-            gameplayManager.LaunchObjectToPlain(this.gameObject);
             bossState = bossState + 1;
+            gameplayManager.UpdateBossStage(bossState);
         }
         
         
@@ -70,13 +65,31 @@ public class Boss : Enemy
         if(!isStun&&onPlain){
             transform.LookAt(player.transform);
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+            
             if(dashTimer<=0){
-                rb.AddForce(transform.forward*dashForce,ForceMode.Impulse);
+                var target = new Vector3(player.transform.position.x,0,player.transform.position.z);
+                StartCoroutine(DashPos(this.gameObject,transform.position,target));
                 dashTimer = dashWaitTime;
             }
             dashTimer -= Time.deltaTime;
             
         }
+    }
+    IEnumerator DashPos(GameObject boss,Vector3 start, Vector3 end){
+        float timePassed = 0;
+        float lerpDuration = 2;
+        while(timePassed< lerpDuration){
+            float t = timePassed/lerpDuration;
+            if(boss!= null){
+                boss.transform.position = Vector3.Lerp(start, end, t*dashForce);
+            }
+            if(isStun){
+                break;
+            }
+            timePassed+=Time.deltaTime;
+            yield return null;
+        }
+        yield return null;
     }
     private void OnSlay()
     {
@@ -88,13 +101,11 @@ public class Boss : Enemy
         }
         }
         
-
-        
     }
     private IEnumerator SlayProcess(){
         slayindicator.SetActive(true);
         isStun = true;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         animator.SetTrigger("Slay");
         yield return new WaitForSeconds(1f);
         slayindicator.SetActive(false);
@@ -107,18 +118,14 @@ public class Boss : Enemy
     {
         if(!isStun&&onPlain){
             transform.LookAt(player.transform);
-            rb.AddForce(transform.forward*moveSpeed);
-            if((player.transform.position - transform.position).magnitude<= slayRange){
-                StartCoroutine(shootProcess());
-        }
+            StartCoroutine(shootProcess());
         }
     }
 
     private IEnumerator shootProcess(){
         isStun = true;
-        Instantiate(bullet,transform);
-            yield return new WaitForSeconds(3f);
-        bullet.SetActive(false);
+        Instantiate(bullet,transform.position,transform.rotation);
+        yield return new WaitForSeconds(0.6f);
         isStun = false;
         
     }
