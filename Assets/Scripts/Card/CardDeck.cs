@@ -39,9 +39,6 @@ public class CardDeck : MonoBehaviour
 
     private void Update()
     {
-        if(isCastingSpell){
-            
-        }
     }
     private void OnCastSpell(SpellCards card)
     {

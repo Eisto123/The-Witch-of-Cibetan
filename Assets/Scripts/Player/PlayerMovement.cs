@@ -1,11 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Scripting.APIUpdating;
+using Cinemachine;
+using System.Drawing;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -26,9 +25,12 @@ public class PlayerMovement : MonoBehaviour
     private bool onPlain;
     public UnityEvent onDamage;
     public LayerMask layerMask;
+    private CinemachineImpulseSource source;
+    public GameObject onHitImage;
 
     private void Awake()
     {
+        source = GetComponent<CinemachineImpulseSource>();
         playerControl =new PlayerControl();
         controller = GetComponent<CharacterController>();
         initialPos = transform.position;
@@ -83,10 +85,15 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(playerMovement.normalized*speed*Time.deltaTime);
     }
     public void TakeDamage(){
-        //shake
-        //受击animation
+        ScreenShakeManager.instance.CameraShake(source);
+        StartCoroutine(HitVisual());
         onDamage.Invoke();
 
+    }
+    private IEnumerator HitVisual(){
+        onHitImage.SetActive (true);
+        yield return new WaitForSeconds(0.2f);
+        onHitImage.SetActive (false);
     }
     private void OnDrawGizmosSelected()
     {

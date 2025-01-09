@@ -21,7 +21,7 @@ public class Meteorites : MonoBehaviour
                 ScreenShakeManager.instance.CameraShake(source);
             }
             if(item.tag == "Enemy"&&!pushed){
-                item.GetComponent<Enemy>().PushBack(20f);
+                item.GetComponent<Enemy>().PushBack(10f);
                 pushed = true;
             }
             if(item.tag == "Element"){

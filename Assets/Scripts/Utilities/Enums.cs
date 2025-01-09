@@ -12,3 +12,7 @@ public enum CastMethod{
 public enum BossState{
     Dashing, Slaying, Shooting, Die
 }
+
+public enum TutorialStage{
+    Starting,Moving,Collecting,Combining,Casting,Dummy,End
+}

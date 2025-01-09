@@ -10,7 +10,7 @@ public class SynthesisMethodSO : ScriptableObject
     public ElementType element2;
     private SpellName spellName;
 
-    // return the spell name or SO?
+    // return the spell name
     public SpellName SynthesisMethod(){
         switch(element1){
             case ElementType.Water:

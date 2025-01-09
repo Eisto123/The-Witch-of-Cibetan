@@ -76,20 +76,23 @@ public class Boss : Enemy
         }
     }
     IEnumerator DashPos(GameObject boss,Vector3 start, Vector3 end){
-        float timePassed = 0;
-        float lerpDuration = 2;
-        while(timePassed< lerpDuration){
-            float t = timePassed/lerpDuration;
-            if(boss!= null){
-                boss.transform.position = Vector3.Lerp(start, end, t*dashForce);
-            }
-            if(isStun){
-                break;
-            }
-            timePassed+=Time.deltaTime;
-            yield return null;
+        if(!isStun){
+            float timePassed = 0;
+            float lerpDuration = 2;
+            while(timePassed< lerpDuration){
+                float t = timePassed/lerpDuration;
+                if(boss!= null){
+                    boss.transform.position = Vector3.Lerp(start, end, t*dashForce);
+                }
+                if(isStun){
+                    break;
+                }
+                timePassed+=Time.deltaTime;
+                yield return null;
         }
-        yield return null;
+        }
+        
+        
     }
     private void OnSlay()
     {

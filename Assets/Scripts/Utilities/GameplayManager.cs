@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using JetBrains.Annotations;
+using Cinemachine;
 
 public class GameplayManager : MonoBehaviour
 {
@@ -18,7 +18,7 @@ public class GameplayManager : MonoBehaviour
     public int enemyInstanciateRadius;
     public float enemyShootAngle;
     private float enemyTimeCounter;
-    
+    public CinemachineVirtualCamera virtualCamera;
     public float radius= 10f;
     public int HP = 3;
     public Text HPText;
@@ -26,7 +26,6 @@ public class GameplayManager : MonoBehaviour
     public Text EnemyText;
     public Text tutorialText;
     public GameObject bossPrefab;
-    public PickUpEventSO pickUpEvent;
     public bool onBossStage;
     private BossState currentState;
     private GameObject boss;
@@ -34,21 +33,32 @@ public class GameplayManager : MonoBehaviour
     public GameObject Win;
     public GameObject Lose;
 
+    private IEnumerator CameraZoom(float startFOV,float endFOV,float zoomTime){
+        float timePassed = 0;
+        while(timePassed<zoomTime){
+            float t = timePassed/zoomTime;
+            virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(startFOV,endFOV,t);
+            timePassed+=Time.deltaTime;
+            yield return null;
+        }
+    }
     private void Start()
     {
         Time.timeScale = 1;
         UpdateUI();
         enemyTimeCounter = generateEnemyTime;
+        StartCoroutine(CameraZoom(20,60,1f));
         onBossStage = false;
     }
 
     private void Update()
     {
+        
         Counter();
         if(HP <= 0||transform.position.y<-20){
-            
             Lose.SetActive(true);
             Time.timeScale = 0;
+            
         }
         if(currentState == BossState.Die){
             Win.SetActive(true);
@@ -137,10 +147,11 @@ public class GameplayManager : MonoBehaviour
         }
         else{
             EnemyText.text = "BossStage: " + currentState;
-        }
-        if(currentState == BossState.Die){
+            if(currentState == BossState.Die){
             EnemyText.text = "WIN";
         }
+        }
+        
         
     }
     private void GenerateBoss(){
