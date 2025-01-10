@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask layerMask;
     private CinemachineImpulseSource source;
     public GameObject onHitImage;
+    public AudioClip hitAudio;
 
     private void Awake()
     {
@@ -87,7 +88,10 @@ public class PlayerMovement : MonoBehaviour
     public void TakeDamage(){
         ScreenShakeManager.instance.CameraShake(source);
         StartCoroutine(HitVisual());
+        SFXManager.instance.PlayClip(hitAudio);
+        SFXManager.instance.FadeOutClip();
         onDamage.Invoke();
+        
 
     }
     private IEnumerator HitVisual(){

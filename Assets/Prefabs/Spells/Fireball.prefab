@@ -150,6 +150,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireSpeed: 15
   spellDistance: 8
+  fireballClip: {fileID: 8300000, guid: 1a5abb1132c20824f8734a5df4e5c4ab, type: 3}
+  impact: {fileID: 8300000, guid: 1fd31868d68903d4f9e2c4a3b7ef98f3, type: 3}
   Force: 15
   detectRadius: 5
   explode: 0

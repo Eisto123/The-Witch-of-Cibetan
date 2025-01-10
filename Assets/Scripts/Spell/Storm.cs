@@ -12,6 +12,7 @@ public class Storm : MonoBehaviour
     private Vector3 explosionPos;
     public GameObject strike;
     private CinemachineImpulseSource source;
+    public AudioClip stormClip;
 
     private void Awake()
     {
@@ -21,6 +22,7 @@ public class Storm : MonoBehaviour
     {
         explosionPos = transform.position;
         StartCoroutine(DestroyProcess());
+        SFXManager.instance.PlayClip(stormClip);
         
     }
     private IEnumerator DestroyProcess(){
@@ -42,6 +44,7 @@ public class Storm : MonoBehaviour
         ScreenShakeManager.instance.CameraShake(source);
         yield return new WaitForSeconds(1f);
         Destroy(this.gameObject);
+        SFXManager.instance.FadeOutClip();
     }
 
 

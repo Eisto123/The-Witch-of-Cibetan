@@ -13,6 +13,8 @@ public class Fireball : MonoBehaviour
     //private Vector3 DetectPos;
 
     private CinemachineImpulseSource source;
+    public AudioClip fireballClip;
+    public AudioClip impact;
 
     public float Force;
     public float detectRadius = 1;
@@ -25,6 +27,8 @@ public class Fireball : MonoBehaviour
         initialPos = transform.position;
         //DetectPos = initialPos;
         source = GetComponent<CinemachineImpulseSource>();
+        SFXManager.instance.PlayClip(fireballClip);
+        
     }
 
     private void Update()
@@ -34,6 +38,7 @@ public class Fireball : MonoBehaviour
         
         if(explode){
             ScreenShakeManager.instance.CameraShake(source);
+            SFXManager.instance.PlayClip(impact);
             Collider[] colliders = Physics.OverlapSphere(transform.position, detectRadius); 
             foreach (Collider hit in colliders) {
                 if(hit.tag == "Enemy"){
@@ -44,10 +49,11 @@ public class Fireball : MonoBehaviour
             }
             }
             Destroy(this.gameObject);
-            
+            SFXManager.instance.FadeOutClip();
         }
         if((transform.position - initialPos).magnitude > spellDistance){
             Destroy(this.gameObject);
+            SFXManager.instance.FadeOutClip();
         }
     }
     private void OnTriggerStay(Collider other)

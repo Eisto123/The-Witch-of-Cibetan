@@ -15,7 +15,7 @@ public class SmallEnemy : Enemy
     {
         if(!isStun){
             transform.LookAt(player.transform);
-            rb.AddForce(transform.forward*moveSpeed*Time.deltaTime);
+            rb.AddForce(transform.forward*moveSpeed);
         }
         
         if(transform.position.y <-20){

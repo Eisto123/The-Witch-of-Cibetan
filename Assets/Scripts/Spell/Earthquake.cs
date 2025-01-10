@@ -8,6 +8,7 @@ public class Earthquake : MonoBehaviour
     public float earthquakeRadius;
     public float force;
     private CinemachineImpulseSource source;
+    public AudioClip earthquakeClip;
     private void Awake()
     {
         source = GetComponent<CinemachineImpulseSource>();
@@ -15,6 +16,7 @@ public class Earthquake : MonoBehaviour
     void Start()
     {
         ScreenShakeManager.instance.CameraShake(source);
+        SFXManager.instance.PlayClip(earthquakeClip);
         Collider[] colliders = Physics.OverlapSphere(transform.position, earthquakeRadius); 
             foreach (Collider hit in colliders) {
                 if(hit.tag == "Enemy"){
@@ -24,5 +26,7 @@ public class Earthquake : MonoBehaviour
                 }
             }
         }
+        SFXManager.instance.FadeOutClip();
+
     }
 }

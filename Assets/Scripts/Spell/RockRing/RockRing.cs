@@ -18,6 +18,7 @@ public class RockRing : MonoBehaviour
     private static float orbitTimer = 0;
 
     private float[] angles;
+    public AudioClip rockClip;
 
     void Start()
     {
@@ -36,6 +37,7 @@ public class RockRing : MonoBehaviour
                 orbitingObjects[i]  = Instantiate(rock);
             }
         }
+        SFXManager.instance.PlayClip(rockClip);
     }
 
     void Update()

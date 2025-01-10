@@ -123,6 +123,7 @@ MonoBehaviour:
   waveSpeed: 5
   spellDistance: 8
   rb: {fileID: 8860628851698542586}
+  waveClip: {fileID: 8300000, guid: 3a5fb9911c431ba4fb95b65a6682de7f, type: 3}
 --- !u!54 &8860628851698542586
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -9,10 +9,12 @@ public class Wave : MonoBehaviour
     public float spellDistance;
     public Rigidbody rb;
     private Vector3 initialPos;
+    public AudioClip waveClip;
     
     private void Awake()
     {
         initialPos = transform.position;
+        SFXManager.instance.PlayClip(waveClip);
     }
 
     private void Update()
@@ -21,6 +23,7 @@ public class Wave : MonoBehaviour
         //rb.AddRelativeForce(Vector3.forward*waveSpeed);
         if((transform.position - initialPos).magnitude > spellDistance){
             Destroy(this.gameObject);
+            SFXManager.instance.FadeOutClip();
         }
     }
     private void FixedUpdate()

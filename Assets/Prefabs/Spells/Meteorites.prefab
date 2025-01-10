@@ -123,6 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectRadius: 1
   detectOffset: 2
+  meteoritesClip: {fileID: 8300000, guid: 6eb84ec8923767e45b7a0f147bc1be3b, type: 3}
 --- !u!54 &7044612484387827324
 Rigidbody:
   m_ObjectHideFlags: 0

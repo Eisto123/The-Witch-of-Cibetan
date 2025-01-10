@@ -4980,10 +4980,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c73a5cccc614c4aae41609357614b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Force: 368
+  Force: 766
   Radius: 10
   lift: 80
   strike: {fileID: 285695304929160220}
+  stormClip: {fileID: 8300000, guid: d682a887eaf10d042bde65062261ad03, type: 3}
 --- !u!114 &-5792348162820046532
 MonoBehaviour:
   m_ObjectHideFlags: 0

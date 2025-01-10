@@ -291,3 +291,4 @@ MonoBehaviour:
   orbitRadius: 2
   orbitSpeed: 150
   orbitTime: 20
+  rockClip: {fileID: 8300000, guid: c810957d1e3efd543a9df687dbe3eb94, type: 3}

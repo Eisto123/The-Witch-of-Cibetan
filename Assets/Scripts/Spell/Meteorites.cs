@@ -8,9 +8,11 @@ public class Meteorites : MonoBehaviour
     public int detectOffset;
     private CinemachineImpulseSource source;
     private bool pushed;
+    public AudioClip meteoritesClip;
     private void Awake()
     {
         source = GetComponent<CinemachineImpulseSource>();
+        SFXManager.instance.PlayClip(meteoritesClip);
     }
     private void Update()
     {
@@ -19,6 +21,7 @@ public class Meteorites : MonoBehaviour
             if(item.tag == "Plain"){
                 item.GetComponent<Rigidbody>().isKinematic = false;
                 ScreenShakeManager.instance.CameraShake(source);
+                
             }
             if(item.tag == "Enemy"&&!pushed){
                 item.GetComponent<Enemy>().PushBack(10f);
@@ -31,6 +34,8 @@ public class Meteorites : MonoBehaviour
         }
         if(transform.position.y <-2){
             Destroy(this.gameObject);
+            SFXManager.instance.FadeOutClip();
         }
     }
+
 }

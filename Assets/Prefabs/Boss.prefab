@@ -1456,7 +1456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  moveSpeed: 10
+  moveSpeed: 16
   rb: {fileID: 0}
   gameplayManager: {fileID: 0}
   isStun: 0
@@ -1465,6 +1465,7 @@ MonoBehaviour:
   slayRange: 5
   slayindicator: {fileID: 6756012869822915972}
   bullet: {fileID: 6597182851603261281, guid: b4f1bc2cd74e7334c9506a68265a316f, type: 3}
+  rotationSpeed: 5
   onStageChange:
     m_PersistentCalls:
       m_Calls: []

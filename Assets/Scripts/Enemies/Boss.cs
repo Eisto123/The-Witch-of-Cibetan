@@ -17,6 +17,8 @@ public class Boss : Enemy
     public GameObject slayindicator;
     private Animator animator;
     public GameObject bullet;
+    private bool isShooting = false;
+    public float rotationSpeed = 5f;
     public UnityEvent<BossState> onStageChange;
     
     // Start is called before the first frame update
@@ -31,8 +33,8 @@ public class Boss : Enemy
         
     }
 
-    // Update is called once per frame
-    void Update()
+    
+    void FixedUpdate()
     {
         
         switch(bossState){
@@ -50,7 +52,7 @@ public class Boss : Enemy
                 break;
         }
 
-        if(transform.position.y <-10){
+        if(transform.position.y <-20){
             rb.velocity = Vector3.zero;
             bossState = bossState + 1;
             gameplayManager.UpdateBossStage(bossState);
@@ -58,13 +60,25 @@ public class Boss : Enemy
         
         
     }
+
+    private void LookAtPlayer(){
+        if (player == null || rb == null) return;
+
+            Vector3 directionToTarget = player.transform.position-new Vector3(0,1,0) - transform.position;
+
+            Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+
+            Quaternion smoothRotation = Quaternion.Slerp(rb.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
+            rb.MoveRotation(smoothRotation);
+    }
     
 
     private void OnDash()
     {
         if(!isStun&&onPlain){
-            transform.LookAt(player.transform);
-            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+            LookAtPlayer();
+            //transform.LookAt(player.transform);
+            //transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
             
             if(dashTimer<=0){
                 var target = new Vector3(player.transform.position.x,0,player.transform.position.z);
@@ -78,7 +92,7 @@ public class Boss : Enemy
     IEnumerator DashPos(GameObject boss,Vector3 start, Vector3 end){
         if(!isStun){
             float timePassed = 0;
-            float lerpDuration = 2;
+            float lerpDuration = 1.5f;
             while(timePassed< lerpDuration){
                 float t = timePassed/lerpDuration;
                 if(boss!= null){
@@ -97,7 +111,7 @@ public class Boss : Enemy
     private void OnSlay()
     {
         if(!isStun&&onPlain){
-            transform.LookAt(player.transform);
+            LookAtPlayer();
             rb.AddForce(transform.forward*moveSpeed);
             if((player.transform.position - transform.position).magnitude<= slayRange){
             StartCoroutine(SlayProcess());
@@ -113,16 +127,30 @@ public class Boss : Enemy
         yield return new WaitForSeconds(1f);
         slayindicator.SetActive(false);
         isStun = false;
+        Vector3 directionToTarget = player.transform.position-new Vector3(0,1,0) - transform.position;
+        Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+        rb.MoveRotation(targetRotation);
 
     }
 
 
     private void OnShoot()
     {
+        rotationSpeed = 30f;
         if(!isStun&&onPlain){
-            transform.LookAt(player.transform);
-            StartCoroutine(shootProcess());
+            LookAtPlayer();
+
+            if(isShooting){
+                StartCoroutine(shootProcess());
+            }
+            StartCoroutine(WaitRotation());
+            
         }
+    }
+
+    private IEnumerator WaitRotation(){
+        yield return new WaitForSeconds(1f);
+        isShooting = true;
     }
 
     private IEnumerator shootProcess(){
