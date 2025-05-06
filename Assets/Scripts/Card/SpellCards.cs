@@ -31,7 +31,6 @@ public class SpellCards : Cards
         }
         transform.position = eventData.position;
         //only spell card can drag
-        
     }
 
     public override void OnPointerEnter(PointerEventData eventData)

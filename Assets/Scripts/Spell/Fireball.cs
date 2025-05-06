@@ -10,8 +10,6 @@ public class Fireball : MonoBehaviour
     public float fireSpeed;
     public float spellDistance;
     private Vector3 initialPos;
-    //private Vector3 DetectPos;
-
     private CinemachineImpulseSource source;
     public AudioClip fireballClip;
     public AudioClip impact;
@@ -25,7 +23,6 @@ public class Fireball : MonoBehaviour
     private void Awake()
     {
         initialPos = transform.position;
-        //DetectPos = initialPos;
         source = GetComponent<CinemachineImpulseSource>();
         SFXManager.instance.PlayClip(fireballClip);
         
@@ -34,7 +31,6 @@ public class Fireball : MonoBehaviour
     private void Update()
     {
         transform.position += transform.forward*fireSpeed*Time.deltaTime;
-        //DetectPos = transform.position;
         
         if(explode){
             ScreenShakeManager.instance.CameraShake(source);

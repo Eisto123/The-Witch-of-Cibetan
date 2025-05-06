@@ -77,7 +77,6 @@ public class CastSpellManager : MonoBehaviour
         if(skillShotCanvas.enabled){
             if(Physics.Raycast(ray,out hit, Mathf.Infinity)){
                 mousePosition = new Vector3(hit.point.x, 0,hit.point.z);
-                //castOffset = mousePosition.normalized;
             }
             Quaternion ssCanvas = Quaternion.LookRotation(mousePosition - Player.transform.position);
             ssCanvas.eulerAngles = new Vector3(0, ssCanvas.eulerAngles.y,ssCanvas.eulerAngles.z);
@@ -94,9 +93,6 @@ public class CastSpellManager : MonoBehaviour
                 OnCastEnd.Invoke();
                 cardDeck.RemoveCard(currentCard.currentSlot);
                 skillShotCanvas.enabled = false;
-                
-                
-                
             }
         }
     }

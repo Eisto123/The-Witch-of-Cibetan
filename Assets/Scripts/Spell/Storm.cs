@@ -42,9 +42,10 @@ public class Storm : MonoBehaviour
             
         }
         ScreenShakeManager.instance.CameraShake(source);
+        SFXManager.instance.FadeOutClip();
         yield return new WaitForSeconds(1f);
         Destroy(this.gameObject);
-        SFXManager.instance.FadeOutClip();
+        
     }
 
 

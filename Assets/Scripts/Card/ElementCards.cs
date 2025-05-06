@@ -7,9 +7,7 @@ public class ElementCards : Cards
     public ElementType elementType;
     public Text text;
     public Image image;
-    
     public Vector2 clickOffset;
-
     private bool startSelecting = false;
     public bool isSelected = false;
 

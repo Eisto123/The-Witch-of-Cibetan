@@ -47,23 +47,10 @@ public class CardDeck : MonoBehaviour
         for(int i = 0; i< cards.Count; i++){
             if(i != currentCard.currentSlot){
                 StartCoroutine(LerpPos(cards[i],cards[i].GetComponent<RectTransform>().anchoredPosition,Vector3.up*-centerOffset/4));
-                // float posY = Mathf.Lerp(cards[i].GetComponent<RectTransform>().anchoredPosition.y,-centerOffset/4, Time.deltaTime*cardMoveSpeed);
-                // cards[i].GetComponent<RectTransform>().anchoredPosition = new Vector3 (0,posY,0);
             }
         }
     }
 
-
-    public void ResetPos(){
-        foreach (var item in cards){
-            float posY = Mathf.Lerp(item.GetComponent<RectTransform>().anchoredPosition.y,0, Time.deltaTime*cardMoveSpeed);
-            item.GetComponent<RectTransform>().anchoredPosition = new Vector3 (0,posY,0);
-            if(item!=null){
-                StartCoroutine(LerpPos(item,item.GetComponent<RectTransform>().anchoredPosition,Vector3.zero));
-            }
-        }
-        isCastingSpell = false;
-    }
     IEnumerator LerpPos(GameObject card,Vector3 start, Vector3 end){
         float timePassed = 0;
         while(timePassed< lerpDuration){
@@ -78,6 +65,17 @@ public class CardDeck : MonoBehaviour
         card.GetComponent<RectTransform>().anchoredPosition = end;}
     }
 
+    public void ResetPos(){
+        foreach (var item in cards){
+            float posY = Mathf.Lerp(item.GetComponent<RectTransform>().anchoredPosition.y,0, Time.deltaTime*cardMoveSpeed);
+            item.GetComponent<RectTransform>().anchoredPosition = new Vector3 (0,posY,0);
+            if(item!=null){
+                StartCoroutine(LerpPos(item,item.GetComponent<RectTransform>().anchoredPosition,Vector3.zero));
+            }
+        }
+        isCastingSpell = false;
+    }
+
 
     private void GenerateSlot(){
         for(int i = 0; i<cards.Count;i++){
@@ -88,17 +86,12 @@ public class CardDeck : MonoBehaviour
             }
         }
         
-        float totalWidth = cards.Count*(cardWidth);
         float angle = (cards.Count - 1)*angleBetweenCards/2;
         
         for(int index = 0; index<Slots.Count; index++){
-
-            float xPos = 0 - totalWidth/2 + (index*cardWidth) + cardWidth/2;
             rect = Slots[index].GetComponent<RectTransform>();
             rect.anchoredPosition = FindCurvePosition(angle - index*angleBetweenCards);
-            //rect.anchoredPosition = new Vector3 (xPos,centerPoint.y + Mathf.Cos(Mathf.Deg2Rad*angle)*radius,0);
             rect.rotation = Quaternion.Euler(0,0,angle - index*angleBetweenCards);
-            //rect.anchoredPosition = new Vector3 (xPos,0,0);
             cards[index].transform.SetParent(Slots[index].transform);
             if(!isCastingSpell){
                 if(!cards[index].TryGetComponent<SpellCards>(out SpellCards spellCards)){
@@ -115,7 +108,6 @@ public class CardDeck : MonoBehaviour
                     cards[index].GetComponent<RectTransform>().anchoredPosition = Vector3.up*-centerOffset/4;
                 }
             }
-            
             cards[index].GetComponent<RectTransform>().localRotation = Quaternion.Euler(0,0,0);
             cards[index].GetComponent<Cards>().currentSlot = index;
             

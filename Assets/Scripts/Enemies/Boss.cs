@@ -77,8 +77,6 @@ public class Boss : Enemy
     {
         if(!isStun&&onPlain){
             LookAtPlayer();
-            //transform.LookAt(player.transform);
-            //transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
             
             if(dashTimer<=0){
                 var target = new Vector3(player.transform.position.x,0,player.transform.position.z);

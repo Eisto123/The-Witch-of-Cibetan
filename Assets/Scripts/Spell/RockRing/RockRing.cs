@@ -15,7 +15,7 @@ public class RockRing : MonoBehaviour
     public float orbitRadius = 2f;
     public float orbitSpeed = 50f;
     public float orbitTime;
-    private static float orbitTimer = 0;
+    public static float orbitTimer = 0;
 
     private float[] angles;
     public AudioClip rockClip;
@@ -64,6 +64,7 @@ public class RockRing : MonoBehaviour
             foreach(var item in orbitingObjects){
                 Destroy(item);
             }
+            orbitTimer = 0;
             Destroy(this.gameObject);
         }
     }

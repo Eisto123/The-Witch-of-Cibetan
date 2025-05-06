@@ -13,8 +13,6 @@ IPointerEnterHandler, IPointerExitHandler,IPointerUpHandler,IPointerDownHandler
     public bool isSpell;
     public bool isDragging;
     public bool isSellecting;
-    //public UnityEvent<Cards> BeginDragEvent;
-    //public UnityEvent<Cards> EndDragEvent;
     public UnityEvent<Cards> BeginClickEvent;
     public RectTransform rect;
     public int currentSlot;
@@ -24,16 +22,8 @@ IPointerEnterHandler, IPointerExitHandler,IPointerUpHandler,IPointerDownHandler
     {
         rect = GetComponent<RectTransform>();
     }
-    private void Start()
-    {
-    }
-    private void Update()
-    {
-    }
     public void OnBeginDrag(PointerEventData eventData)
     {
-        //BeginDragEvent.Invoke(this);
-
         isDragging = true;
     }
 
@@ -52,8 +42,6 @@ IPointerEnterHandler, IPointerExitHandler,IPointerUpHandler,IPointerDownHandler
     //Click:Select and synthesis spell
     public virtual void OnPointerDown(PointerEventData eventData)
     {
-        
-        
     }
 
     public virtual void OnPointerUp(PointerEventData eventData)

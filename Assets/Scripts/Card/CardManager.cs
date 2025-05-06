@@ -14,7 +14,7 @@ public class CardManager : MonoBehaviour
     public GameObject elementCard;
     public GameObject spellCard;
 
-    public GameObject cardDeck;
+    public CardDeck cardDeck;
 
 
     public List<SpellCardSO> spellCards;
@@ -31,23 +31,23 @@ public class CardManager : MonoBehaviour
 
     [ContextMenu("TestGenerateCard")]
     public void GenerateCard(){
-        cardDeck.GetComponent<CardDeck>().AddCard(elementCard);
+        cardDeck.AddCard(elementCard);
     }
 
     public void OnPickUpEvent(ElementType elementType){
         switch(elementType){
             case ElementType.Water:
                 elementCard.GetComponent<ElementCards>().Inicialize(water);
-                cardDeck.GetComponent<CardDeck>().AddCard(elementCard);
+                cardDeck.AddCard(elementCard);
                 return;
             case ElementType.Fire:
                 elementCard.GetComponent<ElementCards>().Inicialize(fire);
-                cardDeck.GetComponent<CardDeck>().AddCard(elementCard);
+                cardDeck.AddCard(elementCard);
                 return;
             
             case ElementType.Earth:
                 elementCard.GetComponent<ElementCards>().Inicialize(earth);
-                cardDeck.GetComponent<CardDeck>().AddCard(elementCard);
+                cardDeck.AddCard(elementCard);
                 return;
         }
     }
@@ -58,7 +58,7 @@ public class CardManager : MonoBehaviour
             foreach(SpellCardSO item in spellCards){
                 if(item.spellName == spellName){
                     spellCard.GetComponent<SpellCards>().Inicialize(item);
-                    cardDeck.GetComponent<CardDeck>().AddCard(spellCard);
+                    cardDeck.AddCard(spellCard);
                 }
             }
         }

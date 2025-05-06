@@ -58,6 +58,9 @@ public class GameplayManager : MonoBehaviour
         if(HP <= 0||transform.position.y<-20){
             Lose.SetActive(true);
             Time.timeScale = 0;
+            if(RockRing.orbitTimer>0){
+                RockRing.orbitTimer = 0;
+            }
             
         }
         if(currentState == BossState.Die){
